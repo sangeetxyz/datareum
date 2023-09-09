@@ -11,6 +11,10 @@ export const columns: ColumnDef<Payment>[] = [
     header: "Email",
   },
   {
+    accessorKey: "email",
+    header: "Email",
+  },
+  {
     accessorKey: "amount",
     header: () => <div className="text-right">Amount</div>,
     cell: ({ row }) => {

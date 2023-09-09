@@ -4,7 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "status",
-    header: "Status2",
+    header: "Status3",
   },
   {
     accessorKey: "email",

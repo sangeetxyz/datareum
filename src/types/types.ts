@@ -1,3 +1,5 @@
+import { ColumnDef } from "@tanstack/react-table";
+
 export type userData = {
   id?: number;
   name: string;
@@ -25,4 +27,16 @@ export interface objectType {
 
 export interface APIProps {
   userData: userData;
+}
+
+export type Payment = {
+  id: string;
+  amount: number;
+  status: "pending" | "processing" | "success" | "failed";
+  email: string;
+};
+
+export interface DataTableProps<TData, TValue> {
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
 }

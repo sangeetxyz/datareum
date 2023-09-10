@@ -9,11 +9,21 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal } from "lucide-react";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 export const columns: ColumnDef<userData>[] = [
   {
     accessorKey: "name",
-    header: "Name",
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex "
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Name
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </div>
+      );
+    },
   },
   {
     accessorKey: "email",
@@ -71,7 +81,7 @@ export const payments: userData[] = [
     isOrgVerified: true,
     isPhoneVerified: true,
     isTac: true,
-    name: "Matte Black",
+    name: "aatte Black",
     org: "Google INC",
     phone: "1212121212",
     proUrl:

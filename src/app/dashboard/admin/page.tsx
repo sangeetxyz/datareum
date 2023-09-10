@@ -1,7 +1,6 @@
 "use client";
 
 import CatLoader from "@/components/CatLoader";
-import DashHeader from "@/components/DashHeader";
 import Selector from "@/components/Selector";
 import { useAuth } from "@/context/context";
 import { unSigner } from "@/firebase/firebase";
@@ -11,11 +10,9 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import waves from "../../../../public/waves.png";
 import { Button } from "@/components/ui/button";
-import TableSection from "@/components/table";
-import { ColumnDef } from "@tanstack/react-table";
+import TableSection from "@/components/tableSection";
 import { columns, payments } from "@/utils/tableHelpers";
-
-
+import AdminHeader from "@/components/adminHeader";
 
 const AdminPanel = () => {
   const { user } = useAuth();
@@ -60,9 +57,9 @@ const AdminPanel = () => {
             className="h-full w-full object-cover opacity-20"
           />
         </div>
-        <DashHeader />
+        <AdminHeader />
         <div className="bg-pink-95 flex min-h-screen w-full flex-col items-center pt-20">
-          <div className="h-full w-full max-w-6xl p-4">
+          <div className="h-full w-full max-w-6xl px-4">
             <TableSection columns={columns} data={payments} />
           </div>
         </div>

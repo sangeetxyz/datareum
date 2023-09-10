@@ -10,54 +10,169 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { BsFillPersonFill } from "react-icons/bs";
+import { BiSolidBusiness } from "react-icons/bi";
+import { MdEmail } from "react-icons/md";
+import { AiFillPhone } from "react-icons/ai";
 export const columns: ColumnDef<userData>[] = [
   {
-    accessorKey: "name",
+    accessorKey: "org",
     header: ({ column }) => {
       return (
         <div
-          className="flex "
+          className="flex"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Name
+          Organization
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </div>
       );
     },
   },
   {
-    accessorKey: "email",
-    header: "Email",
-  },
-  {
-    accessorKey: "org",
-    header: "Org",
-  },
-  {
     accessorKey: "phone",
-    header: "Phone",
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Phone
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </div>
+      );
+    },
   },
-
+  {
+    accessorKey: "isGod",
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Role
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </div>
+      );
+    },
+    cell: ({ row }) => {
+      const userData = row.original;
+      return userData.isGod ? (
+        <div className="">ADMIN</div>
+      ) : (
+        <div className="">USER</div>
+      );
+    },
+  },
+  {
+    accessorKey: "canContribute",
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Contribution
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </div>
+      );
+    },
+    cell: ({ row }) => {
+      const userData = row.original;
+      return userData.canContribute ? (
+        <div className="">ALLOWED</div>
+      ) : (
+        <div className="">DENIED</div>
+      );
+    },
+  },
+  {
+    accessorKey: "canDownload",
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex items-center"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          <div className="whitespace-nowrap">API Access</div>
+          <div className="shrink-0">
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+          </div>
+        </div>
+      );
+    },
+    cell: ({ row }) => {
+      const userData = row.original;
+      return userData.canDownload ? (
+        <div className="">ALLOWED</div>
+      ) : (
+        <div className="">DENIED</div>
+      );
+    },
+  },
+  {
+    accessorKey: "b",
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex"
+          // onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Verification
+          {/* <ArrowUpDown className="ml-2 h-4 w-4" /> */}
+        </div>
+      );
+    },
+    cell: ({ row }) => {
+      const userData = row.original;
+      return (
+        <div className="flex space-x-1">
+          <div>
+            {userData.isPhoneVerified ? (
+              <AiFillPhone size={20} color={"#1ED760"} />
+            ) : (
+              <AiFillPhone size={20} color={"orange"} />
+            )}
+          </div>
+          <div>
+            {userData.isEmailVerified ? (
+              <MdEmail size={20} color={"#1ED760"} />
+            ) : (
+              <MdEmail size={20} color={"orange"} />
+            )}
+          </div>
+          {!!userData.org && (
+            <div>
+              {userData.isOrgVerified ? (
+                <BiSolidBusiness size={20} color={"#1ED760"} />
+              ) : (
+                <BiSolidBusiness size={20} color={"orange"} />
+              )}
+            </div>
+          )}
+        </div>
+      );
+    },
+  },
   {
     accessorKey: "a",
     header: () => <div className="text-right">Controls</div>,
     cell: ({ row }) => {
       const userData = row.original;
       return (
-        <div className="flex justify-end">
+        <div className="justify-en flex">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="h-8 w-8 p-0">
-                <span className="sr-only">Open menu</span>
+                {/* <span className="sr-only">Open menu</span> */}
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
-              {/* <DropdownMenuSeparator /> */}
               <DropdownMenuItem>View customer</DropdownMenuItem>
-              {/* <DropdownMenuSeparator /> */}
 
               <DropdownMenuItem>View payment details</DropdownMenuItem>
             </DropdownMenuContent>
@@ -78,7 +193,7 @@ export const payments: userData[] = [
     isContributor: false,
     isEmailVerified: true,
     isGod: true,
-    isOrgVerified: true,
+    isOrgVerified: false,
     isPhoneVerified: true,
     isTac: true,
     name: "aatte Black",

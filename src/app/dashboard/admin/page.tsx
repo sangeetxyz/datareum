@@ -49,7 +49,7 @@ const AdminPanel = () => {
   ) : (
     // <CatLoader/>
     <Selector>
-      <div className="relative min-h-screen">
+      <div className="relative min-h-screen w-full">
         <div className="absolute left-0 top-0 -z-10 h-full w-full bg-black">
           <img
             src={waves.src}
@@ -58,8 +58,9 @@ const AdminPanel = () => {
           />
         </div>
         <AdminHeader />
-        <div className="bg-pink-95 flex min-h-screen w-full flex-col items-center pt-20">
+        <div className="bg-pink-95 w-full flex min-h-screen flex-col items-center pt-20">
           <div className="h-full w-full max-w-6xl px-4">
+            <div className="h-96 w-full bg-red-500"></div>
             <TableSection columns={columns} data={payments} />
           </div>
         </div>

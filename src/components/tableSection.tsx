@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "./ui/button";
 import {
-  ColumnDef,
   flexRender,
   SortingState,
   getCoreRowModel,
@@ -48,7 +47,7 @@ export function TableSection<TData, TValue>({
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} className="text-zinc-50">
+                    <TableHead key={header.id}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(

@@ -161,7 +161,7 @@ export const columns: ColumnDef<userData>[] = [
     cell: ({ row }) => {
       const userData = row.original;
       return (
-        <div className="justify-en flex">
+        <div className="flex justify-end">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="h-8 w-8 p-0">

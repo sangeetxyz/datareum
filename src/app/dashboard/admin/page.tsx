@@ -60,7 +60,6 @@ const AdminPanel = () => {
         <AdminHeader />
         <div className="bg-pink-95 w-full flex min-h-screen flex-col items-center pt-20">
           <div className="h-full w-full max-w-6xl px-4">
-            <div className="h-96 w-full bg-red-500"></div>
             <TableSection columns={columns} data={payments} />
           </div>
         </div>

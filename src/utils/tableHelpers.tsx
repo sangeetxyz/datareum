@@ -20,11 +20,19 @@ export const columns: ColumnDef<userData>[] = [
     header: "Email",
   },
   {
-    accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
-    cell: ({ row }) => {
-      const payment = row.original;
+    accessorKey: "org",
+    header: "Org",
+  },
+  {
+    accessorKey: "phone",
+    header: "Phone",
+  },
 
+  {
+    accessorKey: "a",
+    header: () => <div className="text-right">Options</div>,
+    cell: ({ row }) => {
+      const userData = row.original;
       return (
         <div className="flex justify-end">
           <DropdownMenu>

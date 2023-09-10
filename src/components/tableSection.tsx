@@ -90,18 +90,20 @@ export function TableSection<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <ThemeButton
-          title="previous"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        />
-        <ThemeButton
-          title="next"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        />
-      </div>
+      {data.length > 10 && (
+        <div className="flex items-center justify-end space-x-2 py-4">
+          <ThemeButton
+            title="previous"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          />
+          <ThemeButton
+            title="next"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          />
+        </div>
+      )}
     </div>
   );
 }

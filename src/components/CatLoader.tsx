@@ -4,7 +4,7 @@ import cat from "../../public/cat.json";
 
 const CatLoader = () => {
   return (
-    <div className="flex items-center justify-center h-screen w-full bg-gray-950">
+    <div className="flex h-screen w-full items-center justify-center bg-zinc-950">
       <Player
         autoplay
         loop

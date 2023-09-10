@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { BsArrowUpRight } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { handleGetVerifiedClicked } from "@/utils/handlers";
+import ThemeButton from "./themeButton";
 const God = (props: { userData: userData }) => {
   const router = useRouter();
   return (
@@ -61,20 +62,14 @@ const God = (props: { userData: userData }) => {
                   Activate the{" "}
                   <span className="font-bol capitalize">god mode</span> now!
                 </div>
-                <motion.div
-                  whileHover={{
-                    scale: 1.05,
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                  }}
-                  className="mt-4 cursor-pointer rounded-lg bg-gradient-to-tr from-violet-500 to-teal-500 px-3 py-2 text-sm uppercase xl:mt-0"
+
+                <ThemeButton
+                  title="get verified"
                   onClick={() => {
                     handleGetVerifiedClicked(props.userData);
                   }}
-                >
-                  get verified
-                </motion.div>
+                  className="mt-4"
+                />
               </div>
               <div className="mt-4 flex justify-center">
                 <div className="flex items-start">

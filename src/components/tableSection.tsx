@@ -4,6 +4,7 @@ import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
+  getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 
@@ -16,6 +17,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { DataTableProps } from "@/types/types";
+import ThemeButton from "./themeButton";
 
 export function TableSection<TData, TValue>({
   columns,
@@ -25,11 +27,12 @@ export function TableSection<TData, TValue>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
   });
 
   return (
     <div>
-      <div className="my-4 text-xl uppercase">api token</div>
+      <div className="my-4 text-xl uppercase">user management</div>
       <div className="rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-zinc-500 backdrop-blur-sm">
         <Table>
           <TableHeader>
@@ -79,6 +82,18 @@ export function TableSection<TData, TValue>({
             )}
           </TableBody>
         </Table>
+      </div>
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <ThemeButton
+          title="previous"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        />
+        <ThemeButton
+          title="next"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        />
       </div>
     </div>
   );

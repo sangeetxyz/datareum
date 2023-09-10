@@ -7,7 +7,7 @@ const ThemeButton = (props: {
   disabled?: boolean;
   className?: string;
 }) => {
-  const buttonClasses = `cursor-pointer rounded-lg bg-gradient-to-tr from-violet-500 to-teal-500 px-3 py-2 text-sm uppercase xl:mt-0 ${
+  const buttonClasses = `cursor-pointer text-zinc-50 text-center rounded-lg bg-gradient-to-tr from-violet-500 to-teal-500 px-3 py-2 text-sm uppercase xl:mt-0 ${
     props.disabled ? "opacity-50 pointer-events-none" : ""
   } ${props.className || ""}`;
   return (

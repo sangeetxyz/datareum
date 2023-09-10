@@ -33,6 +33,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { GiSettingsKnobs } from "react-icons/gi";
 import { toast } from "react-toastify";
+import ThemeButton from "@/components/themeButton";
+import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
 export const columns: ColumnDef<userData>[] = [
   {
     accessorKey: "org",
@@ -181,9 +184,6 @@ export const columns: ColumnDef<userData>[] = [
     header: () => <div className="text-right">Controls</div>,
     cell: ({ row }) => {
       const userData = row.original;
-      const [isConfirmationOpened, setIsConfirmationOpened] = useState(false);
-      const [isUpadateOpened, setIsUpadateOpened] = useState(false);
-      const router = useRouter();
 
       return (
         <div className="flex justify-end">
@@ -193,12 +193,25 @@ export const columns: ColumnDef<userData>[] = [
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Are you sure absolutely sure?</DialogTitle>
-                <DialogDescription>
+                <DialogTitle className="text-3xl">User Controls</DialogTitle>
+                {/* <DialogDescription>
                   This action cannot be undone. This will permanently delete
                   your account and remove your data from our servers.
-                </DialogDescription>
+                </DialogDescription> */}
               </DialogHeader>
+              <div className="flex w-full justify-between">
+                <div className="text-zinc-50">isGod</div>
+                <Switch />
+              </div>
+              <div className="flex w-full justify-between">
+                <div className="text-zinc-50">isContributor</div>
+                <Switch />
+              </div>
+              <div className="flex w-full justify-between">
+                <div className="text-zinc-50">canDownload</div>
+                <Switch />
+              </div>
+              <ThemeButton title="Update Changes" />
             </DialogContent>
           </Dialog>
         </div>

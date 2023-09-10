@@ -441,3 +441,50 @@ export const handleGetVerifiedClicked = async (userData: userData) => {
     });
   }
 };
+
+export const handleUserUpdateOnAdmin = async (
+  isGod: boolean,
+  canContribute: boolean,
+  canDownload: boolean,
+  isOrgVerified: boolean,
+  isEmailVerified: boolean,
+  isPhoneVerified: boolean,
+  userData: userData,
+) => {
+  const token = userData.token;
+  if (canDownload === false) {
+    token === null;
+  }
+  const newUserData: userData = {
+    name: userData.name,
+    org: userData.org,
+    email: userData.email,
+    phone: userData.phone,
+    isOrgVerified: isOrgVerified,
+    isEmailVerified: isEmailVerified,
+    isPhoneVerified: isPhoneVerified,
+    canContribute: canContribute,
+    canDownload: canDownload,
+    token: token,
+    isGod: isGod,
+    proUrl: userData.proUrl,
+    fireUid: userData.fireUid,
+    isContributor: userData.isContributor,
+    isTac: userData.isTac,
+  };
+  await axios
+    .put("http://127.0.0.1:3000/api/dev/users", newUserData)
+    .then(() => {
+      toast.success("Information updated!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        pauseOnFocusLoss: false,
+        theme: "dark",
+      });
+    });
+};

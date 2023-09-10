@@ -20,11 +20,11 @@ model user {
   isContributor   Boolean
   proUrl          String?
   isTac           Boolean
-  isOrgVerified   Boolean?
-  isEmailVerified Boolean?
-  isPhoneVerified Boolean?
-  canContribute   Boolean?
-  canDownload     Boolean?
+  isOrgVerified   Boolean
+  isEmailVerified Boolean
+  isPhoneVerified Boolean
+  canContribute   Boolean
+  canDownload     Boolean
   isGod           Boolean
   token           String?   @unique
   createdAt       DateTime  @default(now())

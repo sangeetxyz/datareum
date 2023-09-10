@@ -6,11 +6,11 @@ export type userData = {
   org: string;
   email: string;
   phone: string;
-  isOrgVerified?: boolean;
-  isEmailVerified?: boolean;
-  isPhoneVerified?: boolean;
-  canContribute?: boolean;
-  canDownload?: boolean;
+  isOrgVerified: boolean;
+  isEmailVerified: boolean;
+  isPhoneVerified: boolean;
+  canContribute: boolean;
+  canDownload: boolean;
   isGod: boolean;
   token?: string;
   proUrl?: string;

@@ -1,27 +1,5 @@
-import { Payment, userData } from "@/types/types";
+import { userData } from "@/types/types";
 import { ColumnDef } from "@tanstack/react-table";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -33,20 +11,14 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
-import { BsFillPersonFill } from "react-icons/bs";
+import { ArrowUpDown } from "lucide-react";
 import { BiSolidBusiness } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
 import { AiFillPhone } from "react-icons/ai";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 import { GiSettingsKnobs } from "react-icons/gi";
-import { toast } from "react-toastify";
-import ThemeButton from "@/components/themeButton";
-import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
+import { handleUserUpdateOnAdmin } from "./handlers";
 
 {
   /* TODO: delete token if download revoked */
@@ -65,6 +37,10 @@ export const columns: ColumnDef<userData>[] = [
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </div>
       );
+    },
+    cell: ({ row }) => {
+      const userData = row.original;
+      return <div className="">{userData.org}</div>;
     },
   },
   {
@@ -200,7 +176,22 @@ export const columns: ColumnDef<userData>[] = [
     header: () => <div className="text-right">Controls</div>,
     cell: ({ row }) => {
       const userData = row.original;
-      const [isDialogOpened, setIsDialogOpened] = useState();
+      const [isGod, setIsGod] = useState<boolean>(userData.isGod);
+      const [canContribute, setCanContribute] = useState<boolean>(
+        userData.canContribute,
+      );
+      const [canDownload, setCanDownload] = useState<boolean>(
+        userData.canDownload,
+      );
+      const [isEmailVerified, setIsEmailVerified] = useState<boolean>(
+        userData.isEmailVerified,
+      );
+      const [isOrgVerified, setIsOrgVerified] = useState<boolean>(
+        userData.isOrgVerified,
+      );
+      const [isPhoneVerified, setIsPhoneVerified] = useState<boolean>(
+        userData.isPhoneVerified,
+      );
       return (
         <div className="flex justify-end">
           {/* <Dialog open={isDialogOpened}>
@@ -259,41 +250,91 @@ export const columns: ColumnDef<userData>[] = [
                 <AlertDialogDescription className="text-zinc-300">
                   Toggle permissons and verifications!
                 </AlertDialogDescription>
-                <div className="flex flex-col space-y-4">
+                <div className="flex flex-col space-y-4 pt-2">
                   <div className="flex w-full justify-between">
                     <div className="text-zinc-50">isGod</div>
-                    <Switch />
+                    <Switch
+                      checked={isGod}
+                      onCheckedChange={(value) => {
+                        setIsGod(value);
+                      }}
+                    />
                   </div>
                   <div className="flex w-full justify-between">
                     <div className="text-zinc-50">canContribute</div>
-                    <Switch />
+                    <Switch
+                      checked={canContribute}
+                      onCheckedChange={(value) => {
+                        setCanContribute(value);
+                      }}
+                    />
                   </div>
                   <div className="flex w-full justify-between">
                     <div className="text-zinc-50">canDownload</div>
                     {/* TODO: delete token if download revoked */}
-                    <Switch />
+                    <Switch
+                      checked={canDownload}
+                      onCheckedChange={(value) => {
+                        setCanDownload(value);
+                      }}
+                    />
                   </div>
                   <div className="flex w-full justify-between">
                     <div className="text-zinc-50">isEmailVerified</div>
-                    <Switch />
+                    <Switch
+                      checked={isEmailVerified}
+                      onCheckedChange={(value) => {
+                        setIsEmailVerified(value);
+                      }}
+                    />
                   </div>
                   <div className="flex w-full justify-between">
                     <div className="text-zinc-50">isOrgVerified</div>
-                    <Switch />
+                    <Switch
+                      checked={isOrgVerified}
+                      onCheckedChange={(value) => {
+                        setIsOrgVerified(value);
+                      }}
+                    />
                   </div>
                   <div className="flex w-full justify-between">
                     <div className="text-zinc-50">isPhoneVerified</div>
-                    <Switch />
+                    <Switch
+                      checked={isPhoneVerified}
+                      onCheckedChange={(value) => {
+                        setIsPhoneVerified(value);
+                      }}
+                    />
                   </div>
                 </div>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel className="">
-                  {/* <ThemeButton title="cancel" /> */}
+                <AlertDialogCancel
+                  onClick={() => {
+                    setIsGod(userData.isGod);
+                    setCanContribute(userData.canContribute);
+                    setCanDownload(userData.canDownload);
+                    setIsEmailVerified(userData.isEmailVerified);
+                    setIsOrgVerified(userData.isOrgVerified);
+                    setIsPhoneVerified(userData.isPhoneVerified);
+                  }}
+                >
                   CANCEL
                 </AlertDialogCancel>
-                <AlertDialogAction className="cursor-pointer rounded-lg bg-gradient-to-tr from-violet-500 to-teal-500 px-3 py-2 text-center text-sm uppercase text-zinc-50 hover:opacity-90 xl:mt-0">
-                  {/* <ThemeButton title="update" /> */}
+                <AlertDialogAction
+                  onClick={() => {
+                    handleUserUpdateOnAdmin(
+                      isGod,
+                      canContribute,
+                      canDownload,
+                      isEmailVerified,
+                      isOrgVerified,
+                      isPhoneVerified,
+                      userData,
+                    );
+                  }}
+                  className="cursor-pointer rounded-lg bg-gradient-to-tr from-violet-500 to-teal-500 px-3 py-2 text-center text-sm uppercase text-zinc-50 hover:opacity-90 xl:mt-0"
+                >
                   update
                 </AlertDialogAction>
               </AlertDialogFooter>

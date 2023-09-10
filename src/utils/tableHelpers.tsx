@@ -8,12 +8,31 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { BsFillPersonFill } from "react-icons/bs";
 import { BiSolidBusiness } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
 import { AiFillPhone } from "react-icons/ai";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { GiSettingsKnobs } from "react-icons/gi";
+import { toast } from "react-toastify";
 export const columns: ColumnDef<userData>[] = [
   {
     accessorKey: "org",
@@ -70,20 +89,22 @@ export const columns: ColumnDef<userData>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex"
+          className="flex items-center justify-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Contribution
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <div className="whitespace-nowrap">Contribution</div>
+          <div className="shrink-0">
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+          </div>
         </div>
       );
     },
     cell: ({ row }) => {
       const userData = row.original;
       return userData.canContribute ? (
-        <div className="">ALLOWED</div>
+        <div className="text-center">ALLOWED</div>
       ) : (
-        <div className="">DENIED</div>
+        <div className="text-center">DENIED</div>
       );
     },
   },
@@ -92,7 +113,7 @@ export const columns: ColumnDef<userData>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex items-center"
+          className="flex items-center justify-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <div className="whitespace-nowrap">API Access</div>
@@ -105,9 +126,9 @@ export const columns: ColumnDef<userData>[] = [
     cell: ({ row }) => {
       const userData = row.original;
       return userData.canDownload ? (
-        <div className="">ALLOWED</div>
+        <div className="text-center">ALLOWED</div>
       ) : (
-        <div className="">DENIED</div>
+        <div className="text-center">DENIED</div>
       );
     },
   },
@@ -127,7 +148,7 @@ export const columns: ColumnDef<userData>[] = [
     cell: ({ row }) => {
       const userData = row.original;
       return (
-        <div className="flex space-x-1">
+        <div className="flex justify-center space-x-1">
           <div>
             {userData.isPhoneVerified ? (
               <AiFillPhone size={20} color={"#1ED760"} />
@@ -160,23 +181,26 @@ export const columns: ColumnDef<userData>[] = [
     header: () => <div className="text-right">Controls</div>,
     cell: ({ row }) => {
       const userData = row.original;
+      const [isConfirmationOpened, setIsConfirmationOpened] = useState(false);
+      const [isUpadateOpened, setIsUpadateOpened] = useState(false);
+      const router = useRouter();
+
       return (
         <div className="flex justify-end">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
-                {/* <span className="sr-only">Open menu</span> */}
-                <MoreHorizontal className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-
-              <DropdownMenuItem>View customer</DropdownMenuItem>
-
-              <DropdownMenuItem>View payment details</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Dialog>
+            <DialogTrigger className="-my-4">
+              <GiSettingsKnobs size={28} />
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Are you sure absolutely sure?</DialogTitle>
+                <DialogDescription>
+                  This action cannot be undone. This will permanently delete
+                  your account and remove your data from our servers.
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
         </div>
       );
     },

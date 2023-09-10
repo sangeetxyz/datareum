@@ -35,7 +35,6 @@ export const handleProfilePhotoUpload = async (
       proUrl: url,
       isGod: userData.isGod,
       fireUid: userData.fireUid,
-      isContributor: userData.isContributor,
       isTac: userData.isTac,
     };
     await axios
@@ -68,7 +67,6 @@ export const handleProfileUpdateOnDash = async (
     isGod: userData.isGod,
     proUrl: userData.proUrl,
     fireUid: userData.fireUid,
-    isContributor: userData.isContributor,
     isTac: userData.isTac,
   };
   await axios
@@ -408,7 +406,6 @@ export const handleGetVerifiedClicked = async (userData: userData) => {
       isGod: userData.isGod,
       proUrl: userData.proUrl,
       fireUid: userData.fireUid,
-      isContributor: userData.isContributor,
       isTac: userData.isTac,
     };
     await axios
@@ -469,12 +466,13 @@ export const handleUserUpdateOnAdmin = async (
     isGod: isGod,
     proUrl: userData.proUrl,
     fireUid: userData.fireUid,
-    isContributor: userData.isContributor,
     isTac: userData.isTac,
   };
+  console.log(newUserData);
   await axios
     .put("http://127.0.0.1:3000/api/dev/users", newUserData)
     .then(() => {
+      console.log("first")
       toast.success("Information updated!", {
         position: "top-right",
         autoClose: 5000,

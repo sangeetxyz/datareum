@@ -5,7 +5,7 @@ import HomeHeader from "@/components/HomeHeader";
 import React, { useState } from "react";
 import HeroSection from "@/components/Hero";
 import Toaster from "@/components/Toaster";
-import Selector from "@/components/Selector";
+import Container from "@/components/container";
 
 const Home = () => {
   const [variant, setVariant] = useState("default");
@@ -15,13 +15,13 @@ const Home = () => {
 
   return (
     <div className="md:cursor-none">
-      <Selector>
+      <Container>
         <HomeHeader setVariant={variantCB} />
         <Cursor variant={variant} />
         <HeroSection setVariant={variantCB} />
         <Footer />
         <Toaster />
-      </Selector>
+      </Container>
     </div>
   );
 };

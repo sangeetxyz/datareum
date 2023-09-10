@@ -28,7 +28,6 @@ export async function POST(request: Request, response: Response) {
     canDownload: body.canDownload,
     token: body.token,
     fireUid: body.fireUid,
-    isContributor: body.isContributor,
     isTac: body.isTac,
   };
   const res = await prisma.user.create({
@@ -85,8 +84,8 @@ export async function PUT(request: Request) {
         token: body.token,
         proUrl: body.proUrl,
         fireUid: body.fireUid,
-        isContributor: body.isContributor,
         isTac: body.isTac,
+        isGod: body.isGod,
       },
     });
   } else {

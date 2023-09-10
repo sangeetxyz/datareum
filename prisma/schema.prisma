@@ -17,7 +17,6 @@ model user {
   email           String
   phone           String    @unique
   fireUid         String    @unique
-  isContributor   Boolean
   proUrl          String?
   isTac           Boolean
   isOrgVerified   Boolean

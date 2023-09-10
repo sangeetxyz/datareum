@@ -13,7 +13,7 @@ import DashHeader from "@/components/DashHeader";
 import { unSigner } from "@/firebase/firebase";
 import Toaster from "@/components/Toaster";
 import God from "@/components/God";
-import Selector from "@/components/Selector";
+import Container from "@/components/container";
 const Dashboard = () => {
   const { user } = useAuth();
   const router = useRouter();
@@ -50,7 +50,7 @@ const Dashboard = () => {
     </div>
   ) : (
     // <CatLoader/>
-    <Selector>
+    <Container>
       <div className="relative min-h-screen">
         <div className="absolute left-0 top-0 -z-10 h-full w-full bg-black">
           <img
@@ -69,7 +69,7 @@ const Dashboard = () => {
         </div>
         <Toaster />
       </div>
-    </Selector>
+    </Container>
   );
 };
 

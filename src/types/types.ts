@@ -15,7 +15,6 @@ export type userData = {
   token?: string;
   proUrl?: string;
   fireUid: string;
-  isContributor: boolean;
   isTac: boolean;
   createdAt?: Date;
   updatedAt?: Date;

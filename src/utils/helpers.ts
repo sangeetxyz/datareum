@@ -126,7 +126,6 @@ export const tokenGenerator = async (userData: userData) => {
     token: newToken,
     isGod: userData.isGod,
     fireUid: userData.fireUid,
-    isContributor: userData.isContributor,
     isTac: userData.isTac,
   };
   await axios

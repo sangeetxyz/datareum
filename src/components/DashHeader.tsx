@@ -149,7 +149,7 @@ const DashHeader = () => {
               }}
             >
               <div className="bg-yellow-60 flex w-64 flex-col items-center space-y-4 py-4">
-                <motion.div
+                {/* <motion.div
                   id="started"
                   initial={{
                     opacity: 0,
@@ -177,7 +177,7 @@ const DashHeader = () => {
                 >
                   <div className="text-xl font-bold uppercase">login</div>
                   <BiRightArrowAlt size={28} />
-                </motion.div>
+                </motion.div> */}
                 <motion.div
                   id="docs"
                   initial={{
@@ -204,7 +204,7 @@ const DashHeader = () => {
                   <BsBookHalf size={23} />
                 </motion.div>
                 <motion.div
-                  id="docs"
+                  id="explore"
                   initial={{
                     opacity: 0,
                   }}
@@ -222,7 +222,7 @@ const DashHeader = () => {
                   className="flex cursor-pointer items-center"
                   onClick={(event) => {
                     event.stopPropagation();
-                    router.push("/docs");
+                    router.push("/explore");
                   }}
                 >
                   <div className="mr-2 text-xl font-bold uppercase">
@@ -230,7 +230,7 @@ const DashHeader = () => {
                   </div>
                   <AiTwotoneExperiment size={23} />
                 </motion.div>
-                <motion.div
+                {/* <motion.div
                   id="privacy"
                   initial={{
                     opacity: 0,
@@ -256,9 +256,9 @@ const DashHeader = () => {
                     privacy
                   </div>
                   <MdOutlinePrivacyTip size={25} />
-                </motion.div>
+                </motion.div> */}
                 <motion.div
-                  id="privacy"
+                  id="contact"
                   initial={{
                     opacity: 0,
                   }}
@@ -267,7 +267,7 @@ const DashHeader = () => {
                   }}
                   exit={{
                     opacity: 0,
-                    x: -100,
+                    x: 100,
                   }}
                   transition={{
                     duration: 1,
@@ -276,7 +276,7 @@ const DashHeader = () => {
                   className="flex cursor-pointer items-center"
                   onClick={(event) => {
                     event.stopPropagation();
-                    router.push("/privacy");
+                    router.push("/contact");
                   }}
                 >
                   <div className="mr-1 text-xl font-bold uppercase">
@@ -284,7 +284,7 @@ const DashHeader = () => {
                   </div>
                   <MdOutlineContactless size={25} />
                 </motion.div>
-                <motion.div
+                {/* <motion.div
                   id="privacy"
                   initial={{
                     opacity: 0,
@@ -308,7 +308,7 @@ const DashHeader = () => {
                 >
                   <div className="mr-1 text-xl font-bold uppercase">about</div>
                   <BsPeople size={25} />
-                </motion.div>
+                </motion.div> */}
               </div>
             </div>
           </motion.div>

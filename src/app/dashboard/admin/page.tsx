@@ -21,7 +21,7 @@ const AdminPanel = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [allUsersData, setAllUsersData] = useState<userData[]>([]);
   const waiter = async () => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
     setIsLoading(false);
   };
   const getAndSetAllUsersData = async () => {
@@ -32,13 +32,17 @@ const AdminPanel = () => {
     const data = await getDashUserData(user!);
     setUserData(data);
   };
-  useEffect(() => {
+  const dataRefresher = () => {
     getAndSetAllUsersData();
+    setUserDataHelper();
+  };
+  useEffect(() => {
+    // getAndSetAllUsersData();
     waiter();
     if (!user && !isLoading) {
       router.push("/");
     } else {
-      setUserDataHelper();
+      dataRefresher();
     }
   }, [user, isLoading]);
   return !userData ? (

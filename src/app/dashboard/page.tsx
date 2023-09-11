@@ -65,6 +65,12 @@ const Dashboard = () => {
             <ProfileSection userData={userData} />
             <God userData={userData} />
             <ApiSection userData={userData} />
+            <div className="">
+              <div className="my-4 text-xl uppercase">contribution</div>
+              <div className="rounded-xl bg-zinc-950 bg-opacity-30 outline outline-2 outline-gray-700 backdrop-blur-sm">
+                <div className="h-96">asdasd</div>
+              </div>
+            </div>
           </div>
         </div>
         <Toaster />

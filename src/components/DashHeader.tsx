@@ -14,7 +14,7 @@ import {
 } from "framer-motion";
 import { AiTwotoneExperiment } from "react-icons/ai";
 import { useAuth } from "@/context/context";
-import Magnetic from "./Magnetic";
+
 const DashHeader = () => {
   const [isNavOpened, setIsNavOpened] = useState(false);
   const router = useRouter();
@@ -22,8 +22,8 @@ const DashHeader = () => {
   return (
     <div className="fixed top-0 z-10 w-full">
       {/* for pc */}
-      <div className="border-b flex w-full items-center justify-center border-gray-700 backdrop-blur-md">
-        <div className="bg-red- flex h-20 w-full max-w-6xl items-center justify-between px-4 xl:px-2">
+      <div className="flex w-full items-center justify-center border-b border-gray-700 backdrop-blur-md">
+        <div className="bg-red- xl:px- flex h-20 w-full max-w-6xl items-center justify-between px-4">
           <div className="flex flex-col items-end justify-center">
             <div className="flex cursor-pointer items-center">
               <FaEthereum size={28} color="white" />

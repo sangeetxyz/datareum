@@ -16,7 +16,7 @@ const God = (props: { userData: userData }) => {
           {/* admin panel */}
           <div className="bg-blue-90 w-full overflow-clip">
             <div className="my-4 text-xl uppercase">admin panel</div>
-            <div className="w-full rounded-xl border-2 border-gray-500 bg-zinc-950 bg-opacity-30 p-4 outline-gray-500 backdrop-blur-md">
+            <div className="w-full rounded-xl border-2 border-gray-700 bg-zinc-950 bg-opacity-30 p-4 outline-gray-500 backdrop-blur-md">
               <div className="flex flex-col items-center justify-between xl:flex-row">
                 <div className="text-center text-lg font-bold">
                   Access the{" "}
@@ -56,7 +56,7 @@ const God = (props: { userData: userData }) => {
           {/* god mode */}
           <div className="bg-blue-90 w-full overflow-clip">
             <div className="my-4 text-xl uppercase">god mode</div>
-            <div className="w-full rounded-xl border-2 border-gray-500 bg-zinc-950 bg-opacity-30 p-4 outline-gray-500 backdrop-blur-md">
+            <div className="w-full rounded-xl border-2 border-gray-700 bg-zinc-950 bg-opacity-30 p-4 outline-gray-500 backdrop-blur-md">
               <div className="flex flex-col items-center justify-between xl:flex-row">
                 <div className="text-center text-lg font-bold">
                   Activate the{" "}

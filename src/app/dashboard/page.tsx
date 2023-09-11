@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import CatLoader from "@/components/CatLoader";
 import { ApiSection } from "@/components/API";
+import { motion } from "framer-motion";
 import waves from "../../../public/waves.png";
 import ProfileSection from "@/components/profile";
 import DashHeader from "@/components/DashHeader";
@@ -14,6 +15,8 @@ import { unSigner } from "@/firebase/firebase";
 import Toaster from "@/components/Toaster";
 import God from "@/components/God";
 import Container from "@/components/container";
+import ThemeButton from "@/components/themeButton";
+import { BsArrowUpRight, BsFillExclamationDiamondFill } from "react-icons/bs";
 const Dashboard = () => {
   const { user } = useAuth();
   const router = useRouter();
@@ -68,12 +71,51 @@ const Dashboard = () => {
             <div className="">
               <div className="my-4 text-xl uppercase">contribution</div>
               <div className="rounded-xl bg-zinc-950 bg-opacity-30 outline outline-2 outline-gray-700 backdrop-blur-sm">
-                <div className="h-96">asdasd</div>
+                <div className="flex items-center justify-between p-6">
+                  <div className="text-xl font-bold">
+                    Contrtibute to the Healthcare now!
+                  </div>
+                  <motion.div
+                    whileHover={{
+                      scale: 1.05,
+                    }}
+                    whileTap={{
+                      scale: 0.95,
+                    }}
+                    className="flex cursor-pointer items-center space-x-2 rounded-lg bg-gradient-to-tr from-violet-500 to-teal-500 px-3 py-2 text-center text-sm uppercase xl:mt-0"
+                    onClick={() => {
+                      router.push("/dashboard/contribute");
+                    }}
+                  >
+                    <div>contribute</div>
+                    <BsArrowUpRight />
+                  </motion.div>
+                </div>
+                <div className="px-6 pb-8">
+                  <div className="flex items-start space-x-2">
+                    <div className="pt-[2px]">
+                      <BsFillExclamationDiamondFill color={"red"} size={20} />
+                    </div>
+                    <div className=" select-none text-justify">
+                      <span className="font-bold">Caution - </span>You should
+                      never share your API token with anyone. This token is
+                      unresetable. Please read our API{" "}
+                      <span
+                        className="cursor-pointer underline"
+                        onClick={() => {
+                          router.push("/docs");
+                        }}
+                      >
+                        documentation
+                      </span>{" "}
+                      to know more.
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <Toaster />
       </div>
     </Container>
   );

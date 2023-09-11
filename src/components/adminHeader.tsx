@@ -22,7 +22,7 @@ const AdminHeader = () => {
   return (
     <div className="fixed top-0 z-10 w-full">
       {/* for pc */}
-      <div className="flex w-full items-center justify-center border-gray-700 outline-1 outline outline-zinc-600 backdrop-blur-md">
+      <div className="flex w-full items-center justify-center border-gray-700 outline outline-1 outline-zinc-600 backdrop-blur-md">
         <div className="bg-red- flex h-20 w-full max-w-6xl items-center justify-between px-4 xl:px-2">
           <div className="flex flex-col items-end justify-center">
             <div className="flex cursor-pointer items-center">
@@ -38,6 +38,20 @@ const AdminHeader = () => {
             </div>
           </div>
           <div className="mr- hidden space-x-10 text-sm uppercase lg:flex">
+            <motion.div
+              whileHover={{
+                scale: 1.1,
+              }}
+              whileTap={{
+                scale: 0.9,
+              }}
+              onClick={() => {
+                router.back();
+              }}
+              className="cursor-pointer"
+            >
+              dashboard
+            </motion.div>
             <motion.div
               whileHover={{
                 scale: 1.1,
@@ -168,14 +182,15 @@ const AdminHeader = () => {
                   className="flex cursor-pointer items-center"
                   onClick={(event) => {
                     event.stopPropagation();
-                    if (!user) {
-                      router.push("/signin");
-                    } else {
-                      router.push("/dashboard");
-                    }
+                    // if (!user) {
+                    //   router.push("/signin");
+                    // } else {
+                    //   router.push("/dashboard");
+                    // }
+                    router.back();
                   }}
                 >
-                  <div className="text-xl font-bold uppercase">login</div>
+                  <div className="text-xl font-bold uppercase">dashboard</div>
                   <BiRightArrowAlt size={28} />
                 </motion.div>
                 <motion.div
@@ -230,6 +245,7 @@ const AdminHeader = () => {
                   </div>
                   <AiTwotoneExperiment size={23} />
                 </motion.div>
+               
                 <motion.div
                   id="privacy"
                   initial={{
@@ -241,33 +257,6 @@ const AdminHeader = () => {
                   exit={{
                     opacity: 0,
                     x: 100,
-                  }}
-                  transition={{
-                    duration: 1,
-                    ease: "easeInOut",
-                  }}
-                  className="flex cursor-pointer items-center"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    router.push("/privacy");
-                  }}
-                >
-                  <div className="mr-1 text-xl font-bold uppercase">
-                    privacy
-                  </div>
-                  <MdOutlinePrivacyTip size={25} />
-                </motion.div>
-                <motion.div
-                  id="privacy"
-                  initial={{
-                    opacity: 0,
-                  }}
-                  animate={{
-                    opacity: 1,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    x: -100,
                   }}
                   transition={{
                     duration: 1,
@@ -283,31 +272,6 @@ const AdminHeader = () => {
                     contact
                   </div>
                   <MdOutlineContactless size={25} />
-                </motion.div>
-                <motion.div
-                  id="privacy"
-                  initial={{
-                    opacity: 0,
-                  }}
-                  animate={{
-                    opacity: 1,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    x: 100,
-                  }}
-                  transition={{
-                    duration: 1,
-                    ease: "easeInOut",
-                  }}
-                  className="flex cursor-pointer items-center"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    router.push("/privacy");
-                  }}
-                >
-                  <div className="mr-1 text-xl font-bold uppercase">about</div>
-                  <BsPeople size={25} />
                 </motion.div>
               </div>
             </div>

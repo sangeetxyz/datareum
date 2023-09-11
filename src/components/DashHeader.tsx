@@ -37,7 +37,7 @@ const DashHeader = () => {
               </div>
             </div>
           </div>
-          <div className="mr-6 hidden space-x-10 text-sm uppercase lg:flex">
+          <div className="mr- hidden space-x-10 text-sm uppercase lg:flex">
             <motion.div
               whileHover={{
                 scale: 1.1,

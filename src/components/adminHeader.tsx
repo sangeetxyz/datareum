@@ -164,7 +164,7 @@ const AdminHeader = () => {
             >
               <div className="bg-yellow-60 flex w-64 flex-col items-center space-y-4 py-4">
                 <motion.div
-                  id="started"
+                  id="dashboard"
                   initial={{
                     opacity: 0,
                   }}
@@ -219,7 +219,7 @@ const AdminHeader = () => {
                   <BsBookHalf size={23} />
                 </motion.div>
                 <motion.div
-                  id="docs"
+                  id="explore"
                   initial={{
                     opacity: 0,
                   }}
@@ -237,7 +237,7 @@ const AdminHeader = () => {
                   className="flex cursor-pointer items-center"
                   onClick={(event) => {
                     event.stopPropagation();
-                    router.push("/docs");
+                    router.push("/explore");
                   }}
                 >
                   <div className="mr-2 text-xl font-bold uppercase">
@@ -245,9 +245,9 @@ const AdminHeader = () => {
                   </div>
                   <AiTwotoneExperiment size={23} />
                 </motion.div>
-               
+
                 <motion.div
-                  id="privacy"
+                  id="contact"
                   initial={{
                     opacity: 0,
                   }}
@@ -265,7 +265,7 @@ const AdminHeader = () => {
                   className="flex cursor-pointer items-center"
                   onClick={(event) => {
                     event.stopPropagation();
-                    router.push("/privacy");
+                    router.push("/contact");
                   }}
                 >
                   <div className="mr-1 text-xl font-bold uppercase">

@@ -41,7 +41,7 @@ export const uploadUserFull = async (
     canContribute: true,
     isGod: false,
     canDownload: false,
-    token: "null",
+    token: "initial",
     fireUid: auth.currentUser?.uid,
     isContributor: isContributing,
     isTac: isTacAccepted,

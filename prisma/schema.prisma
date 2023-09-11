@@ -25,7 +25,7 @@ model user {
   canContribute   Boolean
   canDownload     Boolean
   isGod           Boolean
-  token           String?   @unique
+  token           String?   @unique 
   createdAt       DateTime  @default(now())
   updatedAt       DateTime? @updatedAt
 }

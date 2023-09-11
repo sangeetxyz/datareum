@@ -448,9 +448,9 @@ export const handleUserUpdateOnAdmin = async (
   isPhoneVerified: boolean,
   userData: userData,
 ) => {
-  const token = userData.token;
+  let token: string | undefined = userData.token;
   if (canDownload === false) {
-    token === null;
+    token = "initial";
   }
   const newUserData: userData = {
     name: userData.name,
@@ -472,7 +472,7 @@ export const handleUserUpdateOnAdmin = async (
   await axios
     .put("http://127.0.0.1:3000/api/dev/users", newUserData)
     .then(() => {
-      console.log("first")
+      console.log("first");
       toast.success("Information updated!", {
         position: "top-right",
         autoClose: 5000,

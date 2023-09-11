@@ -23,12 +23,12 @@ export const ApiSection: React.FC<APIProps> = ({ userData }) => {
   const [reveal, setReveal] = useState(true);
   const [inputState, setInputState] = useState("password");
   const [token, setToken] = useState<string>(
-    userData.token === "null"
+    userData.token === "initial"
       ? "This is not your api key. Click on the generate button."
       : "",
   );
   useEffect(() => {
-    if (userData.token === "null") {
+    if (userData.token === "initial") {
       setIsNew(true);
     } else {
       setToken(userData.token!);

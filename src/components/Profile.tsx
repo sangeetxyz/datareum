@@ -20,7 +20,8 @@ import {
   handleProfileUpdateOnDash,
 } from "@/utils/handlers";
 import { toast } from "react-toastify";
-const Profile = (props: { userData: userData }) => {
+
+const ProfileSection = (props: { userData: userData }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [name, setName] = useState(props.userData.name);
   const [email, setEmail] = useState(props.userData.email);
@@ -434,4 +435,4 @@ const Profile = (props: { userData: userData }) => {
   );
 };
 
-export default Profile;
+export default ProfileSection;

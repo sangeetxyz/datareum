@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 import CatLoader from "@/components/CatLoader";
 import { ApiSection } from "@/components/API";
 import waves from "../../../public/waves.png";
-import Profile from "@/components/Profile";
+import ProfileSection from "@/components/profile";
 import DashHeader from "@/components/DashHeader";
 import { unSigner } from "@/firebase/firebase";
 import Toaster from "@/components/Toaster";
@@ -62,7 +62,7 @@ const Dashboard = () => {
         <DashHeader />
         <div className="bg-pink-95 flex min-h-screen w-full flex-col items-center pt-20">
           <div className="h-full w-full max-w-6xl p-4">
-            <Profile userData={userData} />
+            <ProfileSection userData={userData} />
             <God userData={userData} />
             <ApiSection userData={userData} />
           </div>

@@ -22,7 +22,7 @@ const AdminHeader = () => {
   return (
     <div className="fixed top-0 z-10 w-full">
       {/* for pc */}
-      <div className="flex w-full items-center justify-center border-gray-700 outline outline-1 outline-zinc-600 backdrop-blur-md">
+      <div className="flex w-full items-center justify-center border-b border-gray-700 backdrop-blur-md">
         <div className="bg-red- flex h-20 w-full max-w-6xl items-center justify-between px-4 xl:px-2">
           <div className="flex flex-col items-end justify-center">
             <div className="flex cursor-pointer items-center">

@@ -1,6 +1,6 @@
 "use client";
 
-import CatLoader from "@/components/CatLoader";
+import CatLoader from "@/components/catLoader";
 import Container from "@/components/container";
 import { useAuth } from "@/context/context";
 import { unSigner } from "@/firebase/firebase";

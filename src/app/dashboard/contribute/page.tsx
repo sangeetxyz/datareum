@@ -1,7 +1,9 @@
-import React from "react";
+"use client";
 
+import React from "react";
+import { motion } from "framer-motion";
 const Contribute = () => {
-  return <div>Contribute</div>;
+  return <div>cont</div>;
 };
 
 export default Contribute;

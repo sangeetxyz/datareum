@@ -17,7 +17,7 @@ import {
   MdOutlineContactless,
   MdOutlinePrivacyTip,
 } from "react-icons/md";
-import Magnetic from "./Magnetic";
+import Magnetic from "./magnetic";
 const HomeHeader = (props: { setVariant: (data: string) => void }) => {
   const router = useRouter();
   const { user } = useAuth();

@@ -1,9 +1,9 @@
 "use client";
-import Cursor from "@/components/Cursor";
-import Footer from "@/components/Footer";
-import HomeHeader from "@/components/HomeHeader";
+import Cursor from "@/components/cursor";
+import Footer from "@/components/footer";
+import HomeHeader from "@/components/homeHeader";
 import React, { useState } from "react";
-import HeroSection from "@/components/Hero";
+import HeroSection from "@/components/heroSection";
 import Toaster from "@/components/Toaster";
 import Container from "@/components/container";
 

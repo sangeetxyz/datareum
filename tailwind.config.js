@@ -21,6 +21,10 @@ module.exports = {
       },
     },
     extend: {
+      boxShadow: {
+        neumor:
+          "10px 10px 10px -1px rgba(10, 99, 169, 0.16), -10px -10px 10px -1px rgba(255, 255, 255, 0.70)",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

@@ -37,7 +37,7 @@ export const ApiSection: React.FC<APIProps> = ({ userData }) => {
   }, []);
   return (
     <div>
-      <div className="my-4 text-xl uppercase">api token</div>
+      <div className="my-4 text-xl uppercase">Api token</div>
       <div className="relative rounded-xl bg-zinc-950 bg-opacity-30 outline outline-2 outline-gray-700 backdrop-blur-sm">
         <div className="flex flex-col items-center justify-between space-y-4 px-6 py-6 md:flex-row md:space-y-0">
           <div className="text-center text-xl font-bold">

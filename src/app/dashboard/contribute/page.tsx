@@ -93,15 +93,36 @@ const Contribute = () => {
               <div className="bg-red-95 h-full">
                 {/* <div onClick={(e) => setFile(null)}>no file</div> */}
                 <div className="mb-4 text-xl uppercase">statistics</div>
-                <div className="bg-whit flex h-48 w-full space-x-4">
-                  <div className="flex h-full w-full flex-col items-center justify-center rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-slate-700 backdrop-blur-md">
-                    <div className="text-7xl">89</div>
-                    <div className="uppercase">raw rows</div>
+                {/* stats */}
+                <div className="bg-whit flex w-full space-x-4">
+                  <div className="flex w-full flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
+                    <div className="flex h-48 w-full flex-col items-center justify-center rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-slate-700 backdrop-blur-md">
+                      <div className="text-7xl">89</div>
+                      <div className="mx-4 text-center uppercase">
+                        raw columns
+                      </div>
+                    </div>
+                    <div className="flex h-48 w-full flex-col items-center justify-center rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-slate-700 backdrop-blur-md">
+                      <div className="text-7xl">9384</div>
+                      <div className="mx-4 text-center uppercase">raw rows</div>
+                    </div>
                   </div>
-                  <div className="flex h-full w-full items-center justify-center rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-slate-700 backdrop-blur-md"></div>
-                  <div className="flex h-full w-full items-center justify-center rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-slate-700 backdrop-blur-md"></div>
-                  <div className="flex h-full w-full items-center justify-center rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-slate-700 backdrop-blur-md"></div>
+                  <div className="flex w-full flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
+                    <div className="flex h-48 w-full flex-col items-center justify-center rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-slate-700 backdrop-blur-md">
+                      <div className="text-7xl">28</div>
+                      <div className="mx-4 text-center uppercase">
+                        parsed columns
+                      </div>
+                    </div>
+                    <div className="flex h-48 w-full flex-col items-center justify-center rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-slate-700 backdrop-blur-md">
+                      <div className="text-7xl">9143</div>
+                      <div className="mx-4 text-center uppercase">
+                        parsed rows
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <div className="my-4 text-xl uppercase">parsed data</div>
               </div>
             </div>
           </div>

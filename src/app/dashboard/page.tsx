@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 import CatLoader from "@/components/catLoader";
 import { ApiSection } from "@/components/apiSection";
 import { motion } from "framer-motion";
-import waves from "../../../public/wavess.png";
+import waves from "../../../public/waves.png";
 import ProfileSection from "@/components/profile";
 import DashHeader from "@/components/dashHeader";
 import { unSigner } from "@/firebase/firebase";
@@ -60,7 +60,7 @@ const Dashboard = () => {
             src={waves.src}
             // src="https://ideogram.ai/api/images/direct/w8yTF4rsQWGWyIyIUpJXQQ"
             alt=""
-            className="h-full w-full object-cover opacity-3"
+            className="h-full w-full object-cover opacity-20"
           />
         </div>
         <DashHeader />

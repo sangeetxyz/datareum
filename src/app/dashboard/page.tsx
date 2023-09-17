@@ -58,8 +58,9 @@ const Dashboard = () => {
         <div className="absolute left-0 top-0 -z-10 h-full w-full bg-black">
           <img
             src={waves.src}
+            // src="https://ideogram.ai/api/images/direct/w8yTF4rsQWGWyIyIUpJXQQ"
             alt=""
-            className="h-full w-full object-cover opacity-20"
+            className="h-full w-full object-cover opacity-30"
           />
         </div>
         <DashHeader />

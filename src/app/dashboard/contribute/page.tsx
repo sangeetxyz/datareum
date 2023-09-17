@@ -112,7 +112,7 @@ const Contribute = () => {
                   </div>
                   <div>Select your file to get started</div>
                 </div>
-                <div className="absolute bottom-0 right-0 m-2 text-sm">
+                <div className="absolute bottom-0 right-0 mx-2 my-1 text-sm">
                   .csv & .xlsx only
                 </div>
               </div>

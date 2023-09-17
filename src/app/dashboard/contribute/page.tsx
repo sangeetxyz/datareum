@@ -83,9 +83,12 @@ const Contribute = () => {
           />
         </div>
         <AdminHeader />
-        <div className="bg-pink-950 flex min-h-screen w-full flex-col items-center pt-20">
+        <div className="bg-pink-95 flex min-h-screen w-full flex-col items-center pt-20">
           <div className="h-full w-full max-w-6xl px-4">
             {/* <TableSection columns={columns} data={allUsersData} /> */}
+            <div className="mt-4 h-full rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-zinc-500 backdrop-blur-sm">
+              <div>asd</div>
+            </div>
           </div>
         </div>
       </div>

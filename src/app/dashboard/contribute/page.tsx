@@ -121,15 +121,21 @@ const Contribute = () => {
               ref={fileRef}
               onChange={(event) => {
                 const selectedFile = event.target.files?.[0];
-                if (selectedFile) {
+                if (
+                  selectedFile?.type !== "text/csv" &&
+                  selectedFile?.type !==
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                ) {
+                  console.log("wrong format");
+                } else {
                   setFile(selectedFile);
-                  console.log("file");
+                  console.log("file uploaded");
                 }
               }}
               type="file"
               name="file"
               className="hidden"
-              accept=".csv,.xlxs"
+              accept=".csv, .xlsx"
             />
           </div>
         )}

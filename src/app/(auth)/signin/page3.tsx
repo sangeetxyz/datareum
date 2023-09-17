@@ -3,91 +3,52 @@
 //dM8GkzFyLM3ak9SY
 
 import { useEffect, useState } from "react";
-import { checker, signer, unSigner } from "../../firebase/firebase";
-import { BsFillPersonFill } from "react-icons/bs";
-import { AiFillMail, AiFillPhone } from "react-icons/ai";
+import { checker, signer } from "../../../firebase/firebase";
+import { AiFillPhone } from "react-icons/ai";
 import { FaEthereum } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-import {
-  BiSolidBusiness,
-  BiSolidQuoteAltLeft,
-  BiSolidQuoteAltRight,
-} from "react-icons/bi";
-import { Switch, Tooltip } from "antd";
+import { BiSolidQuoteAltLeft, BiSolidQuoteAltRight } from "react-icons/bi";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/context";
-import axios from "axios";
 import { userData } from "@/types/types";
-import {
-  isEmailValid,
-  isPhoneNumber,
-  isPhoneNumberPresent,
-  switchSizeReturner,
-  uploadUserFull,
-} from "@/utils/helpers";
-import { MdEmail } from "react-icons/md";
+import axios from "axios";
+import { isPhoneNumber, isPhoneNumberPresent } from "@/utils/helpers";
 
 const Signup = () => {
-  const [name, setName] = useState("Matte Black");
-  const [email, setEmail] = useState("nateblcak9089@gmail.com");
-  const [org, setOrg] = useState("Google INC");
   const [phoneNumber, setPhoneNumber] = useState("1212121212");
-  const [isContributing, setIsContributing] = useState(false);
-  const [isTacAccepted, setIsTacAccepted] = useState(true);
   const [isOtpClicked, setIsOtpClicked] = useState(false);
   const [OTP, setOTP] = useState("121212");
   const [allUserData, setAllUserData] = useState<userData[] | null>(null);
   const router = useRouter();
-  const user = useAuth();
-
+  const { user } = useAuth();
+  const getAllUsersData = async () => {
+    const { data } = await axios.get("http://127.0.0.1:3000/api/dev/users");
+    console.log(data);
+    setAllUserData(data);
+  };
   const handleOtpClicked = () => {
-    if (name.length > 1) {
-      if (isEmailValid(email)) {
-        if (org.length > 1) {
-          if (isPhoneNumber(phoneNumber)) {
-            if (isTacAccepted) {
-              if (isPhoneNumberPresent(allUserData, phoneNumber)) {
-                console.log("already have an accout");
-              } else {
-                signer("+91" + phoneNumber).then(async (value) => {
-                  if (value === true) {
-                    setIsOtpClicked(true);
-                  } else {
-                    console.log("sms not sent");
-                  }
-                });
-              }
-            } else {
-              console.log("accept t and c");
-            }
+    if (isPhoneNumber(phoneNumber)) {
+      if (isPhoneNumberPresent(allUserData, phoneNumber)) {
+        signer("+91" + phoneNumber).then(async (value) => {
+          if (value === true) {
+            setIsOtpClicked(true);
           } else {
-            console.log("invalid pho num");
+            console.log("sms not sent");
           }
-        } else {
-          console.log("entrt org");
-        }
+        });
       } else {
-        console.log("enter valid email");
+        console.log("dont have an accout");
       }
     } else {
-      console.log("enter name");
+      console.log("enter valid phone num");
     }
   };
   const handleProceedClicked = () => {
     if (OTP.length === 6) {
       checker(OTP).then(async (value) => {
         if (value === true) {
-          uploadUserFull(
-            name,
-            org,
-            email,
-            phoneNumber,
-            isContributing,
-            isTacAccepted,
-          );
-          // unSigner();
-          console.log("go to page");
+          router.push("/dashboard");
         } else {
           console.log("wrong otp");
         }
@@ -96,15 +57,9 @@ const Signup = () => {
       console.log("enter otp");
     }
   };
-  const getAllUsersData = async () => {
-    const { data } = await axios.get("http://127.0.0.1:3000/api/dev/users");
-    console.log(data);
-    setAllUserData(data);
-  };
 
   useEffect(() => {
-    if (user.user) {
-      console.log(user);
+    if (user) {
       router.push("/dashboard");
     }
     getAllUsersData();
@@ -113,7 +68,7 @@ const Signup = () => {
     <div className="h-screen bg-gradient-to-bl from-gray-900 via-gray-950 to-black md:bg-gradient-to-l">
       <div className="grid h-full grid-cols-3">
         {/* for mobile */}
-        <div className="col-span-3 flex h-full flex-col items-center justify-center bg-gradient-to-bl from-gray-900 via-gray-950 to-black md:bg-gradient-to-l xl:col-span-1 xl:bg-gradient-to-r">
+        <div className="col-span-3 flex h-full flex-col items-center justify-center from-gray-900 via-gray-950 to-black xl:col-span-1 xl:bg-gradient-to-r">
           <AnimatePresence>
             {isOtpClicked ? (
               // second page
@@ -188,14 +143,14 @@ const Signup = () => {
                   Proceed
                 </motion.div>
                 <div className="mt-1 text-center text-sm text-zinc-800">
-                  Already have an account?{" "}
+                  Dont have an account?{" "}
                   <span
                     onClick={() => {
                       router.push("/signup");
                     }}
                     className="cursor-pointer capitalize underline"
                   >
-                    sign in
+                    sign up
                   </span>
                 </div>
               </motion.div>
@@ -224,10 +179,10 @@ const Signup = () => {
                 className="flex flex-col rounded-xl bg-zinc-100 p-6"
               >
                 <div className="w-72 text-3xl font-bold text-zinc-800">
-                  Get started
+                  Welcome back!
                 </div>
                 <div className="mb-4 text-zinc-800">
-                  Create a new account now
+                  Access your account now
                 </div>
                 <div className="my-4 flex w-full justify-center">
                   <motion.div
@@ -242,51 +197,7 @@ const Signup = () => {
                     <FaEthereum size={100} color="#27272A" />
                   </motion.div>
                 </div>
-                <div className="font-bold text-zinc-800">Full Name</div>
-                <div className="mt-1 flex items-center space-x-2">
-                  <div className="">
-                    <BsFillPersonFill size={30} color="#27272A" />
-                  </div>
-                  <input
-                    type="text"
-                    value={name || ""}
-                    onChange={(value) => {
-                      setName(value.target.value);
-                    }}
-                    placeholder="John Smith"
-                    className="h-8 w-full rounded-lg bg-zinc-300 px-4 text-zinc-800 focus:outline-none"
-                  />
-                </div>
-                <div className="mt-2 font-bold text-zinc-800">Email</div>
-                <div className="mt-1 flex items-center space-x-2">
-                  <div className="">
-                    <MdEmail size={30} color="#27272A" />
-                  </div>
-                  <input
-                    type="text"
-                    value={email || ""}
-                    onChange={(value) => {
-                      setEmail(value.target.value);
-                    }}
-                    placeholder="abc@xyz.com"
-                    className="h-8 w-full rounded-lg bg-zinc-300 px-4 text-zinc-800 focus:outline-none"
-                  />
-                </div>
-                <div className="mt-2 font-bold text-zinc-800">Organization</div>
-                <div className="mt-1 flex items-center space-x-2">
-                  <div className="">
-                    <BiSolidBusiness size={30} color="#27272A" />
-                  </div>
-                  <input
-                    type="text"
-                    value={org || ""}
-                    onChange={(value) => {
-                      setOrg(value.target.value);
-                    }}
-                    placeholder="Google"
-                    className="h-8 w-full rounded-lg bg-zinc-300 px-4 text-zinc-800 focus:outline-none"
-                  />
-                </div>
+
                 <div className="mt-2 font-bold text-zinc-800">Phone Number</div>
                 <div className="mt-1 flex items-center space-x-2">
                   <div className="">
@@ -299,41 +210,10 @@ const Signup = () => {
                       setPhoneNumber(value.target.value);
                     }}
                     placeholder="1234567890"
-                    className="h-8 w-full rounded-lg bg-zinc-300 px-4 text-zinc-800 focus:outline-none"
+                    className="h-9 w-full rounded-lg bg-zinc-300 px-4 text-zinc-800 focus:outline-none"
                   />
                 </div>
-                <div className="mt-4 flex items-center justify-between">
-                  <div className="font-bold text-zinc-800">
-                    <Tooltip
-                      title="Contribute to the health system"
-                      arrow={false}
-                    >
-                      <span>I want to contribute</span>
-                    </Tooltip>
-                  </div>
-                  <Switch
-                    onChange={(checked) => {
-                      setIsContributing(checked);
-                    }}
-                    className="bg-zinc-300"
-                    size={switchSizeReturner(30)}
-                  />
-                </div>
-                <div className="mt-4 flex items-center justify-between">
-                  <div className="font-bold text-zinc-800">
-                    I agree to{" "}
-                    <span className="cursor-pointer underline">
-                      Policy Terms
-                    </span>
-                  </div>
-                  <Switch
-                    onChange={(checked) => {
-                      setIsTacAccepted(checked);
-                    }}
-                    className="bg-zinc-300"
-                    size={switchSizeReturner(30)}
-                  />
-                </div>
+
                 <motion.div
                   whileHover={{
                     scale: 1.05,
@@ -349,14 +229,14 @@ const Signup = () => {
                   Get OTP
                 </motion.div>
                 <div className="mt-1 text-center text-sm text-zinc-800">
-                  Already have an account?{" "}
+                  Dont have an account?{" "}
                   <span
                     onClick={() => {
-                      router.push("/signin");
+                      router.push("/signup");
                     }}
                     className="cursor-pointer capitalize underline"
                   >
-                    sign in
+                    sign up
                   </span>
                 </div>
               </motion.div>
@@ -364,7 +244,7 @@ const Signup = () => {
           </AnimatePresence>
         </div>
         {/* for pc */}
-        <div className="col-span-2 hidden h-full w-full bg-gradient-to-l from-gray-800 via-gray-950 to-black outline outline-1 outline-gray-600 xl:block">
+        <div className="col-span-2 hidden h-full w-full bg-gradient-to-bl from-gray-800 via-gray-950 to-black outline outline-1 outline-gray-600 md:bg-gradient-to-l xl:block">
           <div className="flex h-full w-full items-center justify-center">
             <div className="mx-48 flex flex-col items-center">
               <div className="flex items-center">

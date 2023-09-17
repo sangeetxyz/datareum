@@ -3,7 +3,7 @@
 //dM8GkzFyLM3ak9SY
 
 import { useEffect, useState } from "react";
-import { checker, signer, unSigner } from "../../firebase/firebase";
+import { checker, signer, unSigner } from "../../../firebase/firebase";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiFillPhone } from "react-icons/ai";
 import { FaEthereum } from "react-icons/fa";

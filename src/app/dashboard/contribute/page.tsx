@@ -90,9 +90,18 @@ const Contribute = () => {
           // has file
           <div className="bg-pink-95 mih-h-screen flex w-full flex-col items-center pt-20">
             <div className="h-full w-full max-w-6xl p-4">
-              <div className="h-full bg-red-950">
-                <div onClick={(e) => setFile(null)}>no file</div>
-                <div>asds</div>
+              <div className="bg-red-95 h-full">
+                {/* <div onClick={(e) => setFile(null)}>no file</div> */}
+                <div className="mb-4 text-xl uppercase">statistics</div>
+                <div className="bg-whit flex h-48 w-full space-x-4">
+                  <div className="flex h-full w-full flex-col items-center justify-center rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-slate-700 backdrop-blur-md">
+                    <div className="text-7xl">89</div>
+                    <div className="uppercase">raw rows</div>
+                  </div>
+                  <div className="flex h-full w-full items-center justify-center rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-slate-700 backdrop-blur-md"></div>
+                  <div className="flex h-full w-full items-center justify-center rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-slate-700 backdrop-blur-md"></div>
+                  <div className="flex h-full w-full items-center justify-center rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-slate-700 backdrop-blur-md"></div>
+                </div>
               </div>
             </div>
           </div>

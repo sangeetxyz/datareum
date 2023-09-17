@@ -91,9 +91,8 @@ const Contribute = () => {
           <div className="bg-pink-95 mih-h-screen flex w-full flex-col items-center pt-20">
             <div className="h-full w-full max-w-6xl p-4">
               <div className="h-full bg-red-950">
-                <div className=" " onClick={(e) => setFile(null)}>
-                  no file
-                </div>
+                <div onClick={(e) => setFile(null)}>no file</div>
+                <div>asds</div>
               </div>
             </div>
           </div>
@@ -111,7 +110,7 @@ const Contribute = () => {
                   <div className="w-24">
                     <IoCloudUpload className="h-full w-full" />
                   </div>
-                  <div>Upload your file to get started</div>
+                  <div>Select your file to get started</div>
                 </div>
                 <div className="absolute bottom-0 right-0 m-2 text-sm">
                   .csv & .xlsx only
@@ -130,6 +129,7 @@ const Contribute = () => {
               type="file"
               name="file"
               className="hidden"
+              accept=".csv,.xlxs"
             />
           </div>
         )}

@@ -1,11 +1,11 @@
 import React from "react";
-import waves from "../../public/waves.png";
-import hero from "../../public/hero.svg";
-import av1 from "../../public/avatar-1.png";
-import av3 from "../../public/avatar-3.png";
-import av4 from "../../public/avatar-4.png";
-import av5 from "../../public/avatar-5.png";
-import av6 from "../../public/avatar-6.png";
+import waves from "../../../public/waves.png";
+import hero from "../../../public/hero.svg";
+import av1 from "../../../public/avatar-1.png";
+import av3 from "../../../public/avatar-3.png";
+import av4 from "../../../public/avatar-4.png";
+import av5 from "../../../public/avatar-5.png";
+import av6 from "../../../public/avatar-6.png";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { motion } from "framer-motion";
 import Magnetic from "../containers/magnetic";

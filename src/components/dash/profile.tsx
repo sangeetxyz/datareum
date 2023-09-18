@@ -14,7 +14,7 @@ import { SiFastapi } from "react-icons/si";
 import { useRouter } from "next/navigation";
 import { FaEthereum } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
-import DefaultProfilePhoto from "../../public/default-profile-photo.png";
+import DefaultProfilePhoto from "../../../public/default-profile-photo.png";
 import {
   handleProfilePhotoUpload,
   handleProfileUpdateOnDash,

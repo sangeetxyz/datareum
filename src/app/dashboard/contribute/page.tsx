@@ -8,6 +8,7 @@ import React, { useEffect, useRef, useState } from "react";
 import CatLoader from "@/components/loaders/catLoader";
 import { ApiSection } from "@/components/dash/apiSection";
 import { motion } from "framer-motion";
+import Papa from "papaparse";
 import waves from "../../../../public/waves.png";
 import ProfileSection from "@/components/dash/profile";
 import DashHeader from "@/components/headers/dashHeader";
@@ -21,12 +22,26 @@ import TableSection from "@/components/admin/tableSection";
 import { BsFillCloudUploadFill } from "react-icons/bs";
 import { RiUploadCloud2Fill } from "react-icons/ri";
 import { IoCloudUpload } from "react-icons/io5";
+import { analyzeObjectList, processCsvData } from "@/utils/csvHelpers";
 const Contribute = () => {
   const { user } = useAuth();
   const router = useRouter();
+  const fileRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [userData, setUserData] = useState<userData | undefined>(undefined);
   const [file, setFile] = useState<null | File>(null);
+  const [rawData, setRawData] = useState<object[] | unknown[] | null>(null);
+  const [parsedData, setParsedData] = useState<object[] | null>(null);
+  const [rawStats, setRawStats] = useState<{
+    objectCount: number;
+    shortestObjectLength: number;
+    longestObjectLength: number;
+  } | null>(null);
+  const [parsedStats, setParsedStats] = useState<{
+    objectCount: number;
+    shortestObjectLength: number;
+    longestObjectLength: number;
+  } | null>(null);
   const waiter = async () => {
     await new Promise((resolve) => setTimeout(resolve, 500));
     setIsLoading(false);
@@ -35,7 +50,38 @@ const Contribute = () => {
     const data = await getDashUserData(user!);
     setUserData(data);
   };
-  const fileRef = useRef<HTMLInputElement>(null);
+  const onFileChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files?.[0];
+    if (
+      selectedFile?.type === "text/csv" ||
+      selectedFile?.type ===
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    ) {
+      setFile(selectedFile);
+      if (selectedFile) {
+        Papa.parse(selectedFile, {
+          header: true,
+          skipEmptyLines: true,
+          complete: (result) => {
+            const data: any = result.data;
+            setRawData(data);
+            const rawAnalytics = analyzeObjectList(data);
+            console.log(rawAnalytics);
+            setRawStats(rawAnalytics);
+            if (typeof data === "object") {
+              const processed = processCsvData(data);
+              setParsedData(processed);
+              console.log(processed);
+              const parsedAnalytics = analyzeObjectList(processed);
+              setParsedStats(parsedAnalytics);
+            }
+          },
+        });
+      }
+    } else {
+      console.log("wrong format");
+    }
+  };
   useEffect(() => {
     waiter();
     if (!user && !isLoading) {
@@ -91,31 +137,34 @@ const Contribute = () => {
           <div className="bg-pink-95 mih-h-screen flex w-full flex-col items-center pt-20">
             <div className="h-full w-full max-w-6xl p-4">
               <div className="bg-red-95 h-full">
-                {/* <div onClick={(e) => setFile(null)}>no file</div> */}
                 <div className="mb-4 text-xl uppercase">statistics</div>
                 {/* stats */}
                 <div className="bg-whit flex w-full space-x-4">
                   <div className="flex w-full flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
                     <div className="flex h-48 w-full flex-col items-center justify-center rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-slate-700 backdrop-blur-md">
-                      <div className="text-7xl">89</div>
+                      <div className="text-7xl">
+                        {rawStats?.longestObjectLength}
+                      </div>
                       <div className="mx-4 text-center uppercase">
                         raw columns
                       </div>
                     </div>
                     <div className="flex h-48 w-full flex-col items-center justify-center rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-slate-700 backdrop-blur-md">
-                      <div className="text-7xl">9384</div>
+                      <div className="text-7xl">{rawData?.length}</div>
                       <div className="mx-4 text-center uppercase">raw rows</div>
                     </div>
                   </div>
                   <div className="flex w-full flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
                     <div className="flex h-48 w-full flex-col items-center justify-center rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-slate-700 backdrop-blur-md">
-                      <div className="text-7xl">28</div>
+                      <div className="text-7xl">
+                        {parsedStats?.longestObjectLength}
+                      </div>
                       <div className="mx-4 text-center uppercase">
                         parsed columns
                       </div>
                     </div>
                     <div className="flex h-48 w-full flex-col items-center justify-center rounded-xl bg-zinc-950 bg-opacity-30 outline outline-1 outline-slate-700 backdrop-blur-md">
-                      <div className="text-7xl">9143</div>
+                      <div className="text-7xl">{parsedData?.length}</div>
                       <div className="mx-4 text-center uppercase">
                         parsed rows
                       </div>
@@ -150,19 +199,7 @@ const Contribute = () => {
             </div>
             <input
               ref={fileRef}
-              onChange={(event) => {
-                const selectedFile = event.target.files?.[0];
-                if (
-                  selectedFile?.type !== "text/csv" &&
-                  selectedFile?.type !==
-                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                ) {
-                  console.log("wrong format");
-                } else {
-                  setFile(selectedFile);
-                  console.log("file uploaded");
-                }
-              }}
+              onChange={onFileChangeHandler}
               type="file"
               name="file"
               className="hidden"

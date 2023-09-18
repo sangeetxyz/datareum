@@ -1,7 +1,7 @@
 "use client";
 
-import CatLoader from "@/components/catLoader";
-import Container from "@/components/container";
+import CatLoader from "@/components/loaders/catLoader";
+import Container from "@/components/containers/container";
 import { useAuth } from "@/context/context";
 import { unSigner } from "@/firebase/firebase";
 import { userData } from "@/types/types";
@@ -9,10 +9,10 @@ import { getAllUsersData, getDashUserData } from "@/utils/helpers";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import waves from "../../../../public/waves.png";
-import TableSection from "@/components/tableSection";
+import TableSection from "@/components/admin/tableSection";
 import { columns, allUsersData } from "@/utils/tableHelpers";
-import AdminHeader from "@/components/adminHeader";
-import Toaster from "@/components/Toaster";
+import AdminHeader from "@/components/headers/adminHeader";
+import Toaster from "@/components/containers/Toaster";
 
 const AdminPanel = () => {
   const { user } = useAuth();

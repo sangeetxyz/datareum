@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { BsArrowUpRight } from "react-icons/bs";
 import { TiTick } from "react-icons/ti";
 import { handleGetVerifiedClicked } from "@/utils/handlers";
-import ThemeButton from "./themeButton";
+import ThemeButton from "../custom/themeButton";
 const God = (props: { userData: userData }) => {
   const router = useRouter();
   return (

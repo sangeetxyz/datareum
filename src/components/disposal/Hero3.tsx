@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
-import Ether3D from "./ether";
+import Ether3D from "../three/ether";
 import { Josefin_Sans } from "next/font/google";
 
 const inter = Josefin_Sans({

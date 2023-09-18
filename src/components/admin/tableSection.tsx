@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import {
   flexRender,
   SortingState,
@@ -18,7 +18,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { DataTableProps } from "@/types/types";
-import ThemeButton from "./themeButton";
+import ThemeButton from "../custom/themeButton";
 
 export function TableSection<TData, TValue>({
   columns,

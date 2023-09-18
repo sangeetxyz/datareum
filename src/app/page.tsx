@@ -1,11 +1,11 @@
 "use client";
-import Cursor from "@/components/cursor";
-import Footer from "@/components/footer";
-import HomeHeader from "@/components/homeHeader";
+import Cursor from "@/components/cursor/cursor";
+import Footer from "@/components/footers/footer";
+import HomeHeader from "@/components/headers/homeHeader";
 import React, { useState } from "react";
-import HeroSection from "@/components/heroSection";
-import Toaster from "@/components/Toaster";
-import Container from "@/components/container";
+import HeroSection from "@/components/home/heroSection";
+import Toaster from "@/components/containers/Toaster";
+import Container from "@/components/containers/container";
 
 const Home = () => {
   const [variant, setVariant] = useState("default");

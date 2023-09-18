@@ -8,7 +8,7 @@ import av5 from "../../public/avatar-5.png";
 import av6 from "../../public/avatar-6.png";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { motion } from "framer-motion";
-import Magnetic from "./magnetic";
+import Magnetic from "../containers/magnetic";
 const HeroSection = (props: { setVariant: (data: string) => void }) => {
   return (
     <div className="relative">

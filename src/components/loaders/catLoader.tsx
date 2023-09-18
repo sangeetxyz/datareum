@@ -1,6 +1,6 @@
 import { Player } from "@lottiefiles/react-lottie-player";
 import React from "react";
-import cat from "../../public/cat.json";
+import cat from "../../../public/cat.json";
 
 const CatLoader = () => {
   return (

@@ -5,19 +5,19 @@ import { getDashUserData } from "@/utils/helpers";
 import { userData } from "@/types/types";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
-import CatLoader from "@/components/catLoader";
-import { ApiSection } from "@/components/apiSection";
+import CatLoader from "@/components/loaders/catLoader";
+import { ApiSection } from "@/components/dash/apiSection";
 import { motion } from "framer-motion";
 import waves from "../../../../public/waves.png";
-import ProfileSection from "@/components/profile";
-import DashHeader from "@/components/dashHeader";
+import ProfileSection from "@/components/dash/profile";
+import DashHeader from "@/components/headers/dashHeader";
 import { unSigner } from "@/firebase/firebase";
-import Toaster from "@/components/Toaster";
-import God from "@/components/godSection";
-import Container from "@/components/container";
-import ThemeButton from "@/components/themeButton";
-import AdminHeader from "@/components/adminHeader";
-import TableSection from "@/components/tableSection";
+import Toaster from "@/components/containers/Toaster";
+import God from "@/components/dash/godSection";
+import Container from "@/components/containers/container";
+import ThemeButton from "@/components/custom/themeButton";
+import AdminHeader from "@/components/headers/adminHeader";
+import TableSection from "@/components/admin/tableSection";
 import { BsFillCloudUploadFill } from "react-icons/bs";
 import { RiUploadCloud2Fill } from "react-icons/ri";
 import { IoCloudUpload } from "react-icons/io5";
@@ -123,6 +123,7 @@ const Contribute = () => {
                   </div>
                 </div>
                 <div className="my-4 text-xl uppercase">parsed data</div>
+                <div>asd</div>
               </div>
             </div>
           </div>

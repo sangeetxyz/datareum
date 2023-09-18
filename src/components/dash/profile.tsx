@@ -48,7 +48,7 @@ const ProfileSection = (props: { userData: userData }) => {
       <div className="mb-4 text-xl uppercase">profile</div>
 
       <div className="grid grid-cols-8 rounded-xl outline outline-2 outline-gray-700">
-        <div className="col-span-8 flex justify-center rounded-xl bg-zinc-950 bg-opacity-30 p-4 backdrop-blur-md md:col-span-3">
+        <div className="col-span-8 flex justify-center rounded-xl md:rounded-r-none bg-zinc-950 bg-opacity-30 p-4 backdrop-blur-md md:col-span-3">
           <div className="relative flex items-center">
             <img
               src={profilePhotoUrl}

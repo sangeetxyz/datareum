@@ -19,8 +19,8 @@ import {
   handleGetOtpClickedForSignin,
   handleProceedClickedForSignin,
 } from "@/utils/handlers";
-import Toaster from "@/components/Toaster";
-import Container from "@/components/container";
+import Toaster from "@/components/containers/Toaster";
+import Container from "@/components/containers/container";
 const Signup = () => {
   const [phoneNumber, setPhoneNumber] = useState("1212121212");
   const [isOtpClicked, setIsOtpClicked] = useState(false);

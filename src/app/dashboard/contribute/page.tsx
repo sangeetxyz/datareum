@@ -137,7 +137,7 @@ const Contribute = () => {
           <div className="bg-pink-95 mih-h-screen flex w-full flex-col items-center pt-20">
             <div className="h-full w-full max-w-6xl p-4">
               <div className="bg-red-95 h-full">
-                <div className="mb-4 text-xl uppercase">statistics</div>
+                <div className="mb-4 text-xl uppercase">quick stats</div>
                 {/* stats */}
                 <div className="bg-whit flex w-full space-x-4">
                   <div className="flex w-full flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
@@ -171,8 +171,8 @@ const Contribute = () => {
                     </div>
                   </div>
                 </div>
-                <div className="my-4 text-xl uppercase">parsed data</div>
-                <div>asd</div>
+                <div className="my-4 text-xl uppercase">analytics</div>
+                <div></div>
               </div>
             </div>
           </div>

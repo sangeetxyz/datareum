@@ -172,7 +172,9 @@ const Contribute = () => {
                   </div>
                 </div>
                 <div className="my-4 text-xl uppercase">analytics</div>
-                <div></div>
+                <div>
+                  pie charts
+                </div>
               </div>
             </div>
           </div>

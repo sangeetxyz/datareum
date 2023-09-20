@@ -225,3 +225,25 @@ export const processCsvData = (csvData: object[]): object[] => {
     .filter((row) => Object.keys(row).length > 0);
   return processedData;
 };
+export const calculateColumnCounts = (
+  rawObjects: object[],
+  parsedObjects: object[],
+): { name: string; rawColumns: number; parsedColumns: number }[] => {
+  const result: { name: string; rawColumns: number; parsedColumns: number }[] =
+    [];
+
+  // Iterate through rawObjects and parsedObjects arrays
+  for (let i = 0; i < rawObjects.length && i < parsedObjects.length; i++) {
+    const rawObject = rawObjects[i];
+    const parsedObject = parsedObjects[i];
+
+    // Calculate the column counts for each object
+    const rawColumns = Object.keys(rawObject).length;
+    const parsedColumns = Object.keys(parsedObject).length;
+
+    // Add the result to the array
+    result.push({ name: (i + 1).toString(), rawColumns, parsedColumns });
+  }
+
+  return result;
+};

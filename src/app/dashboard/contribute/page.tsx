@@ -1,4 +1,13 @@
 "use client";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 import { useAuth } from "@/context/context";
 import { getDashUserData } from "@/utils/helpers";
@@ -22,7 +31,11 @@ import TableSection from "@/components/admin/tableSection";
 import { BsFillCloudUploadFill } from "react-icons/bs";
 import { RiUploadCloud2Fill } from "react-icons/ri";
 import { IoCloudUpload } from "react-icons/io5";
-import { analyzeObjectList, processCsvData } from "@/utils/csvHelpers";
+import {
+  analyzeObjectList,
+  calculateColumnCounts,
+  processCsvData,
+} from "@/utils/csvHelpers";
 const Contribute = () => {
   const { user } = useAuth();
   const router = useRouter();
@@ -32,6 +45,7 @@ const Contribute = () => {
   const [file, setFile] = useState<null | File>(null);
   const [rawData, setRawData] = useState<object[] | unknown[] | null>(null);
   const [parsedData, setParsedData] = useState<object[] | null>(null);
+  const [me, setMe] = useState([{}]);
   const [rawStats, setRawStats] = useState<{
     objectCount: number;
     shortestObjectLength: number;
@@ -74,6 +88,7 @@ const Contribute = () => {
               console.log(processed);
               const parsedAnalytics = analyzeObjectList(processed);
               setParsedStats(parsedAnalytics);
+              setMe(calculateColumnCounts(data, processed));
             }
           },
         });
@@ -172,7 +187,38 @@ const Contribute = () => {
                   </div>
                 </div>
                 <div className="my-4 text-xl uppercase">analytics</div>
-                <div>random charts</div>
+                <div className=" w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart
+                      width={500}
+                      height={400}
+                      data={me}
+                      margin={{
+                        top: 10,
+                        right: 30,
+                        left: 0,
+                        bottom: 0,
+                      }}
+                    >
+                      {/* <CartesianGrid strokeDasharray="3 3" /> */}
+                      <XAxis dataKey="name" />
+                      <YAxis />
+                      <Tooltip />
+                      <Area
+                        type="monotone"
+                        dataKey="rawColumns"
+                        stroke="#8884d8"
+                        fill="#8884d8"
+                      />
+                      <Area
+                        type="monotone"
+                        dataKey="parsedColumns"
+                        stroke="#ffc658"
+                        fill="#ffc658"
+                      />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </div>
               </div>
             </div>
           </div>

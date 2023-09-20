@@ -232,14 +232,26 @@ export const calculateColumnCounts = (
   const result: { name: string; rawColumns: number; parsedColumns: number }[] =
     [];
 
-  // Iterate through rawObjects and parsedObjects arrays
   for (let i = 0; i < rawObjects.length && i < parsedObjects.length; i++) {
-    const rawObject = rawObjects[i];
-    const parsedObject = parsedObjects[i];
+    const rawObject: any = rawObjects[i];
+    const parsedObject: any = parsedObjects[i];
 
-    // Calculate the column counts for each object
-    const rawColumns = Object.keys(rawObject).length;
-    const parsedColumns = Object.keys(parsedObject).length;
+    // Initialize counters for rawColumns and parsedColumns
+    let rawColumns = 0;
+    let parsedColumns = 0;
+
+    // Count attributes with non-empty string values
+    for (const key in rawObject) {
+      if (rawObject.hasOwnProperty(key) && rawObject[key] !== "") {
+        rawColumns++;
+      }
+    }
+
+    for (const key in parsedObject) {
+      if (parsedObject.hasOwnProperty(key) && parsedObject[key] !== "") {
+        parsedColumns++;
+      }
+    }
 
     // Add the result to the array
     result.push({ name: (i + 1).toString(), rawColumns, parsedColumns });
@@ -247,3 +259,19 @@ export const calculateColumnCounts = (
 
   return result;
 };
+
+export function countAttributes(
+  obj: object[],
+): { name: string; attributeCount: number }[] {
+  const result: { name: string; attributeCount: number }[] = [];
+
+  for (const key in obj) {
+    if (Object.hasOwnProperty.call(obj, key)) {
+      const innerObject = obj[key];
+      const attributeCount = Object.keys(innerObject).length;
+      result.push({ name: key, attributeCount });
+    }
+  }
+
+  return result;
+}

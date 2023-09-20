@@ -93,7 +93,7 @@ function generateRandomGender() {
 // Function to generate random sodium potassium level
 function generateRandomSodiumPotassiumLevel() {
   return `${getRandomInt(135, 145)}/${(Math.random() * (5 - 3.5) + 3.5).toFixed(
-    2
+    2,
   )}`;
 }
 
@@ -197,7 +197,7 @@ const csvWriter = createCsvWriter({
 
 const records = [];
 
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 500; i++) {
   records.push(generateMockRowWithErrors(errorPercentage));
 }
 
@@ -205,7 +205,7 @@ csvWriter
   .writeRecords(records) // returns a promise
   .then(() => {
     console.log(
-      `CSV file with ${errorPercentage}% errors generated successfully.`
+      `CSV file with ${errorPercentage}% errors generated successfully.`,
     );
   })
   .catch((error) => {

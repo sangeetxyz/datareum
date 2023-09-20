@@ -7,6 +7,8 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  Legend,
+  Label,
 } from "recharts";
 
 import { useAuth } from "@/context/context";
@@ -79,15 +81,17 @@ const Contribute = () => {
           complete: (result) => {
             const data: any = result.data;
             setRawData(data);
+            console.log(data);
             const rawAnalytics = analyzeObjectList(data);
-            console.log(rawAnalytics);
+            // console.log(rawAnalytics);
             setRawStats(rawAnalytics);
             if (typeof data === "object") {
               const processed = processCsvData(data);
               setParsedData(processed);
-              console.log(processed);
+              // console.log(processed);
               const parsedAnalytics = analyzeObjectList(processed);
               setParsedStats(parsedAnalytics);
+              console.log(calculateColumnCounts(data, processed));
               setMe(calculateColumnCounts(data, processed));
             }
           },
@@ -97,6 +101,7 @@ const Contribute = () => {
       console.log("wrong format");
     }
   };
+
   useEffect(() => {
     waiter();
     if (!user && !isLoading) {
@@ -187,34 +192,86 @@ const Contribute = () => {
                   </div>
                 </div>
                 <div className="my-4 text-xl uppercase">analytics</div>
-                <div className=" w-full">
-                  <ResponsiveContainer width="100%" height="100%">
+                <div className="h-72 w-full">
+                  <ResponsiveContainer>
                     <AreaChart
                       width={500}
                       height={400}
-                      data={me}
+                      data={me.splice(0, 100)}
                       margin={{
-                        top: 10,
-                        right: 30,
+                        top: -30,
+                        right: 0,
                         left: 0,
                         bottom: 0,
                       }}
                     >
-                      {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                      <XAxis dataKey="name" />
-                      <YAxis />
                       <Tooltip />
+                      <defs>
+                        <linearGradient
+                          id="colorUv"
+                          x1="0"
+                          y1="0"
+                          x2="0"
+                          y2="1"
+                        >
+                          <stop
+                            offset="5%"
+                            stopColor="#8884d8"
+                            stopOpacity={0.8}
+                          />
+                          <stop
+                            offset="95%"
+                            stopColor="#8884d8"
+                            stopOpacity={0}
+                          />
+                        </linearGradient>
+                        <linearGradient
+                          id="colorPv"
+                          x1="0"
+                          y1="0"
+                          x2="0"
+                          y2="1"
+                        >
+                          <stop
+                            offset="5%"
+                            stopColor="#82ca9d"
+                            stopOpacity={0.8}
+                          />
+                          <stop
+                            offset="95%"
+                            stopColor="#82ca9d"
+                            stopOpacity={0}
+                          />
+                        </linearGradient>
+                      </defs>
                       <Area
                         type="monotone"
                         dataKey="rawColumns"
-                        stroke="#8884d8"
-                        fill="#8884d8"
+                        stroke="#4E77FF"
+                        fill="url(#colorUv)"
                       />
                       <Area
                         type="monotone"
                         dataKey="parsedColumns"
-                        stroke="#ffc658"
-                        fill="#ffc658"
+                        stroke="#FFDCCC"
+                        fill="url(#colorPv)"
+                      />
+                      <Legend
+                        iconType="diamond"
+                        payload={[
+                          {
+                            value: "Raw Columns",
+                            type: "diamond",
+                            id: "rawColumns",
+                            color: "#4E77FF",
+                          },
+                          {
+                            value: "Parsed Columns",
+                            type: "diamond",
+                            id: "parsedColumns",
+                            color: "#FFDCCC",
+                          },
+                        ]}
                       />
                     </AreaChart>
                   </ResponsiveContainer>

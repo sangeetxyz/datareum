@@ -105,27 +105,7 @@ const Contribute = () => {
       console.log("wrong format");
     }
   };
-  const CustomTooltip = ({
-    active,
-    payload,
-    label,
-  }: {
-    active: boolean | undefined;
-    payload: any;
-    label: string;
-  }) => {
-    if (active && payload && payload.length > 0) {
-      return (
-        <div className="flex flex-col items-center rounded-lg bg-zinc-950 p-2 text-sm outline outline-1 outline-slate-700">
-          <div>{`On row - ${label + 1}`}</div>
-          <div>{`Raw Columns - ${payload[0].value}`}</div>
-          <div>{`Parsed Columns - ${payload[1].value}`}</div>
-        </div>
-      );
-    }
 
-    return null;
-  };
   useEffect(() => {
     waiter();
     if (!user && !isLoading) {
@@ -189,112 +169,14 @@ const Contribute = () => {
                   parsedStats={parsedStats}
                 />
                 <AnalyticsSection rawData={rawData} parsedData={parsedData} />
-                <RetensionSection
+                <RetentionSection
                   rawStats={rawStats}
                   parsedStats={parsedStats}
                 />
-                <div className="mb-4 mt-8 text-xl uppercase">feedback</div>
-
-                <div className="flex w-full flex-col space-y-6 rounded-xl bg-zinc-950 bg-opacity-30 p-6 outline outline-1 outline-slate-700 backdrop-blur-md">
-                  {rawStats?.shortestObjectLength ===
-                  parsedStats?.shortestObjectLength ? (
-                    <div className="flex w-full rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
-                      <div className="">
-                        <TiTick color="#1ED760" size={28} />
-                      </div>
-                      <div className="mt-0.5">
-                        Every Column Name has been detected and parsed
-                        successfully!
-                      </div>
-                    </div>
-                  ) : rawStats?.shortestObjectLength! >
-                    parsedStats?.longestObjectLength! ? (
-                    <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
-                      <div className="pt-1">
-                        <BsFillExclamationDiamondFill color={"red"} size={20} />
-                      </div>
-                      <div className="mt-0.5">
-                        We cannot identify every column of your data!
-                      </div>
-                    </div>
-                  ) : parsedStats?.longestObjectLength === 0 ? (
-                    <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
-                      <div className="pt-1">
-                        <BsFillExclamationDiamondFill color={"red"} size={20} />
-                      </div>
-                      <div className="mt-0.5">
-                        none of your columns are detected!
-                      </div>
-                    </div>
-                  ) : (
-                    <></>
-                  )}
-                  {rawStats?.objectCount! > parsedStats?.objectCount! && (
-                    <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
-                      <div className="mt-1">
-                        <BsFillExclamationDiamondFill color={"red"} size={20} />
-                      </div>
-                      <div className="mt-0.5">
-                        Overlaping Analytics shows there one or more rows which
-                        doesnt has a single correct column name!
-                      </div>
-                    </div>
-                  )}
-                  {rawStats?.objectCount === parsedStats?.objectCount ? (
-                    <div className="flex w-full rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
-                      <div className="">
-                        <TiTick color="#1ED760" size={28} />
-                      </div>
-                      <div className="mt-0.5">
-                        Each and every row of your data has been parsed
-                        successfully!
-                      </div>
-                    </div>
-                  ) : rawStats?.objectCount! > parsedStats?.objectCount! ? (
-                    <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
-                      <div className="mt-1">
-                        <BsFillExclamationDiamondFill color={"red"} size={20} />
-                      </div>
-                      <div className="mt-0.5">
-                        Not every row has been parsed from your data!
-                      </div>
-                    </div>
-                  ) : parsedStats?.objectCount === 0 ? (
-                    <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
-                      <div className="mt-1">
-                        <BsFillExclamationDiamondFill color={"red"} size={20} />
-                      </div>
-                      <div className="mt-0.5">
-                        None of your rows has been parsed!
-                      </div>
-                    </div>
-                  ) : (
-                    <></>
-                  )}
-                  {parsedStats?.shortestObjectLength! < 10 
-                  && (
-                    <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
-                      <div className="mt-1">
-                        <BsFillExclamationDiamondFill color={"red"} size={20} />
-                      </div>
-                      <div className="mt-0.5">
-                        Minimum Column Retention is too low for your data!
-                      </div>
-                    </div>
-                  )}
-                  {parsedStats?.longestObjectLength! -
-                    parsedStats?.shortestObjectLength! >
-                  10 && (
-                    <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
-                      <div className="mt-1">
-                        <BsFillExclamationDiamondFill color={"red"} size={20} />
-                      </div>
-                      <div className="mt-0.5">
-                        Column names are too diverse in your data!
-                      </div>
-                    </div>
-                  )}
-                </div>
+                <FeedbackSection
+                  rawStats={rawStats}
+                  parsedStats={parsedStats}
+                />
               </div>
             </div>
           </div>
@@ -336,7 +218,7 @@ const Contribute = () => {
 
 export default Contribute;
 
-const QuickStatsSection = ({
+export const QuickStatsSection = ({
   rawData,
   parsedData,
   rawStats,
@@ -384,7 +266,7 @@ const QuickStatsSection = ({
   );
 };
 
-const AnalyticsSection = ({
+export const AnalyticsSection = ({
   rawData,
   parsedData,
 }: {
@@ -489,7 +371,7 @@ const AnalyticsSection = ({
   );
 };
 
-const RetensionSection = ({
+export const RetentionSection = ({
   rawStats,
   parsedStats,
 }: {
@@ -555,11 +437,11 @@ const RetensionSection = ({
         columns: rawStats?.longestObjectLength,
       },
       {
-        name: "Maximun Retaintion",
+        name: "Maximun Retention",
         columns: parsedStats?.longestObjectLength,
       },
       {
-        name: "Minimum Retaintion",
+        name: "Minimum Retention",
         columns: parsedStats?.shortestObjectLength,
       },
     ]);
@@ -567,7 +449,7 @@ const RetensionSection = ({
 
   return (
     <>
-      <div className="mb-2 mt-8 text-xl uppercase">column retension</div>
+      <div className="mb-2 mt-8 text-xl uppercase">column retention</div>
       <div className="flex h-48 w-full flex-col">
         <ResponsiveContainer>
           <BarChart data={data!} layout="vertical">
@@ -621,6 +503,121 @@ const RetensionSection = ({
             </Bar>
           </BarChart>
         </ResponsiveContainer>
+      </div>
+    </>
+  );
+};
+
+export const FeedbackSection = ({
+  rawStats,
+  parsedStats,
+}: {
+  rawStats: {
+    objectCount: number;
+    shortestObjectLength: number;
+    longestObjectLength: number;
+  } | null;
+  parsedStats: {
+    objectCount: number;
+    shortestObjectLength: number;
+    longestObjectLength: number;
+  } | null;
+}) => {
+  return (
+    <>
+      <div className="mb-4 mt-8 text-xl uppercase">feedback</div>
+      <div className="flex w-full flex-col space-y-6 rounded-xl bg-zinc-950 bg-opacity-30 p-6 outline outline-1 outline-slate-700 backdrop-blur-md">
+        {rawStats?.shortestObjectLength ===
+        parsedStats?.shortestObjectLength ? (
+          <div className="flex w-full rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+            <div className="">
+              <TiTick color="#1ED760" size={28} />
+            </div>
+            <div className="mt-0.5">
+              Every Column Name has been detected and parsed successfully!
+            </div>
+          </div>
+        ) : rawStats?.shortestObjectLength! >
+          parsedStats?.longestObjectLength! ? (
+          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+            <div className="pt-1">
+              <BsFillExclamationDiamondFill color={"red"} size={20} />
+            </div>
+            <div className="mt-0.5">
+              We cannot identify every column of your data!
+            </div>
+          </div>
+        ) : parsedStats?.longestObjectLength === 0 ? (
+          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+            <div className="pt-1">
+              <BsFillExclamationDiamondFill color={"red"} size={20} />
+            </div>
+            <div className="mt-0.5">none of your columns are detected!</div>
+          </div>
+        ) : (
+          <></>
+        )}
+        {rawStats?.objectCount! > parsedStats?.objectCount! && (
+          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+            <div className="mt-1">
+              <BsFillExclamationDiamondFill color={"red"} size={20} />
+            </div>
+            <div className="mt-0.5">
+              Overlaping Analytics shows there one or more rows which doesnt has
+              a single correct column name!
+            </div>
+          </div>
+        )}
+        {rawStats?.objectCount === parsedStats?.objectCount ? (
+          <div className="flex w-full rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+            <div className="">
+              <TiTick color="#1ED760" size={28} />
+            </div>
+            <div className="mt-0.5">
+              Each and every row of your data has been parsed successfully!
+            </div>
+          </div>
+        ) : rawStats?.objectCount! > parsedStats?.objectCount! ? (
+          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+            <div className="mt-1">
+              <BsFillExclamationDiamondFill color={"red"} size={20} />
+            </div>
+            <div className="mt-0.5">
+              Not every row has been parsed from your data!
+            </div>
+          </div>
+        ) : parsedStats?.objectCount === 0 ? (
+          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+            <div className="mt-1">
+              <BsFillExclamationDiamondFill color={"red"} size={20} />
+            </div>
+            <div className="mt-0.5">None of your rows has been parsed!</div>
+          </div>
+        ) : (
+          <></>
+        )}
+        {parsedStats?.shortestObjectLength! < 10 && (
+          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+            <div className="mt-1">
+              <BsFillExclamationDiamondFill color={"red"} size={20} />
+            </div>
+            <div className="mt-0.5">
+              Minimum Column Retention is too low for your data!
+            </div>
+          </div>
+        )}
+        {parsedStats?.longestObjectLength! -
+          parsedStats?.shortestObjectLength! >
+          10 && (
+          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+            <div className="mt-1">
+              <BsFillExclamationDiamondFill color={"red"} size={20} />
+            </div>
+            <div className="mt-0.5">
+              Column names are too diverse in your data!
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

@@ -34,7 +34,11 @@ import Container from "@/components/containers/container";
 import ThemeButton from "@/components/custom/themeButton";
 import AdminHeader from "@/components/headers/adminHeader";
 import TableSection from "@/components/admin/tableSection";
-import { BsFillCloudUploadFill } from "react-icons/bs";
+import {
+  BsArrowUpRight,
+  BsFillCloudUploadFill,
+  BsFillExclamationDiamondFill,
+} from "react-icons/bs";
 import { RiUploadCloud2Fill } from "react-icons/ri";
 import { IoCloudUpload } from "react-icons/io5";
 import {
@@ -42,6 +46,7 @@ import {
   calculateColumnCounts,
   processCsvData,
 } from "@/utils/csvHelpers";
+import { TiTick } from "react-icons/ti";
 const Contribute = () => {
   const { user } = useAuth();
   const router = useRouter();
@@ -188,6 +193,108 @@ const Contribute = () => {
                   rawStats={rawStats}
                   parsedStats={parsedStats}
                 />
+                <div className="mb-4 mt-8 text-xl uppercase">feedback</div>
+
+                <div className="flex w-full flex-col space-y-6 rounded-xl bg-zinc-950 bg-opacity-30 p-6 outline outline-1 outline-slate-700 backdrop-blur-md">
+                  {rawStats?.shortestObjectLength ===
+                  parsedStats?.shortestObjectLength ? (
+                    <div className="flex w-full rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+                      <div className="">
+                        <TiTick color="#1ED760" size={28} />
+                      </div>
+                      <div className="mt-0.5">
+                        Every Column Name has been detected and parsed
+                        successfully!
+                      </div>
+                    </div>
+                  ) : rawStats?.shortestObjectLength! >
+                    parsedStats?.longestObjectLength! ? (
+                    <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+                      <div className="pt-1">
+                        <BsFillExclamationDiamondFill color={"red"} size={20} />
+                      </div>
+                      <div className="mt-0.5">
+                        We cannot identify every column of your data!
+                      </div>
+                    </div>
+                  ) : parsedStats?.longestObjectLength === 0 ? (
+                    <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+                      <div className="pt-1">
+                        <BsFillExclamationDiamondFill color={"red"} size={20} />
+                      </div>
+                      <div className="mt-0.5">
+                        none of your columns are detected!
+                      </div>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  {rawStats?.objectCount! > parsedStats?.objectCount! && (
+                    <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+                      <div className="mt-1">
+                        <BsFillExclamationDiamondFill color={"red"} size={20} />
+                      </div>
+                      <div className="mt-0.5">
+                        Overlaping Analytics shows there one or more rows which
+                        doesnt has a single correct column name!
+                      </div>
+                    </div>
+                  )}
+                  {rawStats?.objectCount === parsedStats?.objectCount ? (
+                    <div className="flex w-full rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+                      <div className="">
+                        <TiTick color="#1ED760" size={28} />
+                      </div>
+                      <div className="mt-0.5">
+                        Each and every row of your data has been parsed
+                        successfully!
+                      </div>
+                    </div>
+                  ) : rawStats?.objectCount! > parsedStats?.objectCount! ? (
+                    <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+                      <div className="mt-1">
+                        <BsFillExclamationDiamondFill color={"red"} size={20} />
+                      </div>
+                      <div className="mt-0.5">
+                        Not every row has been parsed from your data!
+                      </div>
+                    </div>
+                  ) : parsedStats?.objectCount === 0 ? (
+                    <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+                      <div className="mt-1">
+                        <BsFillExclamationDiamondFill color={"red"} size={20} />
+                      </div>
+                      <div className="mt-0.5">
+                        None of your rows has been parsed!
+                      </div>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  {parsedStats?.shortestObjectLength! < 10 
+                  && (
+                    <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+                      <div className="mt-1">
+                        <BsFillExclamationDiamondFill color={"red"} size={20} />
+                      </div>
+                      <div className="mt-0.5">
+                        Minimum Column Retention is too low for your data!
+                      </div>
+                    </div>
+                  )}
+                  {parsedStats?.longestObjectLength! -
+                    parsedStats?.shortestObjectLength! >
+                  10 && (
+                    <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+                      <div className="mt-1">
+                        <BsFillExclamationDiamondFill color={"red"} size={20} />
+                      </div>
+                      <div className="mt-0.5">
+                        Column names are too diverse in your data!
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -428,7 +535,6 @@ const RetensionSection = ({
     name: string;
     value: number;
   }) => {
-    console.log(name);
     return (
       <text
         x={x + 10} // Adjust the position of the label
@@ -491,7 +597,6 @@ const RetensionSection = ({
               <LabelList
                 dataKey="columns"
                 content={(event) => {
-                  console.log(event);
                   return (
                     <CustomBarLabel
                       x={parseInt(event.x!.toString())}
@@ -506,12 +611,10 @@ const RetensionSection = ({
                 <Cell
                   key={`cell-${index}`}
                   stroke={"#fff"}
-                  strokeWidth={1}
+                  strokeWidth={2}
                   fill="#25A494"
                   style={{
                     opacity: 0.5,
-                    backgroundColor: "#25A494",
-                    borderRadius: "40px",
                   }}
                 />
               ))}

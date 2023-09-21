@@ -185,8 +185,6 @@ const Contribute = () => {
                 />
                 <AnalyticsSection rawData={rawData} parsedData={parsedData} />
                 <RetensionSection
-                  rawData={rawData}
-                  parsedData={parsedData}
                   rawStats={rawStats}
                   parsedStats={parsedStats}
                 />
@@ -385,13 +383,9 @@ const AnalyticsSection = ({
 };
 
 const RetensionSection = ({
-  rawData,
-  parsedData,
   rawStats,
   parsedStats,
 }: {
-  rawData: object[] | null;
-  parsedData: object[] | null;
   rawStats: {
     objectCount: number;
     shortestObjectLength: number;
@@ -423,23 +417,6 @@ const RetensionSection = ({
     return null;
   };
   const [data, setData] = useState<object[] | null>(null);
-  useEffect(() => {
-    setData([
-      {
-        name: "Actual Columns",
-        columns: rawStats?.longestObjectLength,
-      },
-      {
-        name: "Maximun Retaintion",
-        columns: parsedStats?.longestObjectLength,
-      },
-      {
-        name: "Minimum Retaintion",
-        columns: parsedStats?.shortestObjectLength,
-      },
-    ]);
-  }, [parsedStats]);
-
   const CustomBarLabel = ({
     x,
     y,
@@ -465,16 +442,29 @@ const RetensionSection = ({
       </text>
     );
   };
+  useEffect(() => {
+    setData([
+      {
+        name: "Actual Columns",
+        columns: rawStats?.longestObjectLength,
+      },
+      {
+        name: "Maximun Retaintion",
+        columns: parsedStats?.longestObjectLength,
+      },
+      {
+        name: "Minimum Retaintion",
+        columns: parsedStats?.shortestObjectLength,
+      },
+    ]);
+  }, [parsedStats]);
+
   return (
     <>
       <div className="mb-2 mt-8 text-xl uppercase">column retension</div>
       <div className="flex h-48 w-full flex-col">
         <ResponsiveContainer>
-          <BarChart
-            data={data!}
-            layout="vertical"
-            // margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-          >
+          <BarChart data={data!} layout="vertical">
             <XAxis type="number" hide />
             <YAxis dataKey="name" type="category" hide />
             <Tooltip
@@ -496,7 +486,6 @@ const RetensionSection = ({
                   color: "#25A494",
                 },
               ]}
-             
             />
             <Bar dataKey="columns" fill="#25A49">
               <LabelList

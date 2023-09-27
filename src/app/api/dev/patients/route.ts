@@ -14,9 +14,6 @@ export async function GET(request: Request, response: Response) {
 
 export async function POST(request: Request, response: Response) {
   const body = await request.json();
-  console.log("asdasdasdasds");
-  console.log(body.data);
-
   const res = await prisma.patient.createMany({
     data: body.data,
     skipDuplicates: true,

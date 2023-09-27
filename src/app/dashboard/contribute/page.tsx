@@ -165,13 +165,7 @@ const Contribute = () => {
                       const f = objectSplitter(e);
                       const g = objectUserDataMixer(f.forDb, userData.phone);
                       console.log(g);
-                      handlePatientUpload([
-                        {
-                          data: "aseed",
-                          identifier: "12d",
-                          phone: "24242",
-                        },
-                      ]);
+                      handlePatientUpload(g);
                     }
                   }}
                 >

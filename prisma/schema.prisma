@@ -38,4 +38,3 @@ model patient {
   createdAt  DateTime  @default(now())
   updatedAt  DateTime? @updatedAt
 }
- 

@@ -21,10 +21,10 @@ export const FeedbackSection = ({
   return (
     <>
       <div className="mb-4 mt-8 text-xl uppercase">feedback</div>
-      <div className="flex w-full flex-col space-y-6 rounded-xl bg-zinc-950 bg-opacity-30 p-6 outline outline-1 outline-slate-700 backdrop-blur-md">
+      <div className="flex w-full flex-col space-y-4 rounded-xl bg-zinc-950 bg-opacity-30 p-4 outline outline-1 outline-slate-700 backdrop-blur-md">
         {rawStats?.shortestObjectLength ===
         parsedStats?.shortestObjectLength ? (
-          <div className="flex w-full rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+          <div className="flex w-full rounded-lg bg-slate-900 bg-opacity-70 py-4 px-3 outline outline-1 outline-green-800">
             <div className="">
               <TiTick color="#1ED760" size={28} />
             </div>
@@ -34,7 +34,7 @@ export const FeedbackSection = ({
           </div>
         ) : rawStats?.shortestObjectLength! >
           parsedStats?.longestObjectLength! ? (
-          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-red-900">
             <div className="pt-1">
               <BsFillExclamationDiamondFill color={"red"} size={20} />
             </div>
@@ -43,7 +43,7 @@ export const FeedbackSection = ({
             </div>
           </div>
         ) : parsedStats?.longestObjectLength === 0 ? (
-          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-red-900">
             <div className="pt-1">
               <BsFillExclamationDiamondFill color={"red"} size={20} />
             </div>
@@ -53,7 +53,7 @@ export const FeedbackSection = ({
           <></>
         )}
         {rawStats?.objectCount! > parsedStats?.objectCount! && (
-          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-red-900">
             <div className="mt-1">
               <BsFillExclamationDiamondFill color={"red"} size={20} />
             </div>
@@ -64,7 +64,7 @@ export const FeedbackSection = ({
           </div>
         )}
         {rawStats?.objectCount === parsedStats?.objectCount ? (
-          <div className="flex w-full rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+          <div className="flex w-full rounded-lg bg-slate-900 bg-opacity-70 py-4 px-3 outline outline-1 outline-green-800">
             <div className="">
               <TiTick color="#1ED760" size={28} />
             </div>
@@ -73,7 +73,7 @@ export const FeedbackSection = ({
             </div>
           </div>
         ) : rawStats?.objectCount! > parsedStats?.objectCount! ? (
-          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-red-900">
             <div className="mt-1">
               <BsFillExclamationDiamondFill color={"red"} size={20} />
             </div>
@@ -82,7 +82,7 @@ export const FeedbackSection = ({
             </div>
           </div>
         ) : parsedStats?.objectCount === 0 ? (
-          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-red-900">
             <div className="mt-1">
               <BsFillExclamationDiamondFill color={"red"} size={20} />
             </div>
@@ -92,7 +92,7 @@ export const FeedbackSection = ({
           <></>
         )}
         {parsedStats?.shortestObjectLength! < 10 && (
-          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-red-900">
             <div className="mt-1">
               <BsFillExclamationDiamondFill color={"red"} size={20} />
             </div>
@@ -104,7 +104,7 @@ export const FeedbackSection = ({
         {parsedStats?.longestObjectLength! -
           parsedStats?.shortestObjectLength! >
           10 && (
-          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-slate-600">
+          <div className="flex w-full space-x-2 rounded-lg bg-slate-900 bg-opacity-70 p-4 outline outline-1 outline-red-900">
             <div className="mt-1">
               <BsFillExclamationDiamondFill color={"red"} size={20} />
             </div>

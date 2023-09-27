@@ -29,6 +29,7 @@
     "axios": "^1.4.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "crypto-js": "^4.1.1",
     "csv-writer": "^1.6.0",
     "encoding": "^0.1.13",
     "eslint": "8.45.0",
@@ -57,6 +58,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.1.2",
     "@types/papaparse": "^5.3.8",
     "@types/uuid": "^9.0.2",
     "prettier": "^3.0.1",

@@ -55,3 +55,12 @@ export interface ForBcTypes {
   identifier: string;
   secretKey: string;
 }
+
+export type PatientDB = {
+  id?: number;
+  identifier: string;
+  data: string;
+  phone: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+};

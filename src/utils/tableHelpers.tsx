@@ -31,15 +31,17 @@ export const columns: ColumnDef<userData>[] = [
     accessorKey: "org",
     header: ({ column }) => {
       return (
-        <div
-          className="flex items-center justify-start"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          <div>Organization</div>
-          <div>
-            <ArrowUpDown className="ml-2 h-4 w-4" />
+        <>
+          <div
+            className="flex items-center justify-start"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            <div>Organization</div>
+            <div>
+              <ArrowUpDown className="ml-2 h-4 w-4" />
+            </div>
           </div>
-        </div>
+        </>
       );
     },
     cell: ({ row }) => {

@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { userData } from "@/types/types";
+import { PatientDB, userData } from "@/types/types";
 import { checker, signer, storage } from "@/firebase/firebase";
 import axios from "axios";
 import {
@@ -485,4 +485,10 @@ export const handleUserUpdateOnAdmin = async (
         theme: "dark",
       });
     });
+};
+
+export const handlePatientUpload = async (data: PatientDB[]) => {
+  await axios.post("http://127.0.0.1:3000/api/dev/patients", {
+    data,
+  });
 };

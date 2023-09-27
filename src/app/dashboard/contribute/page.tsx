@@ -23,6 +23,8 @@ import {
   objectSplitter,
   objectUserDataMixer,
 } from "@/utils/crypt";
+import axios from "axios";
+import { handlePatientUpload } from "@/utils/handlers";
 
 const Contribute = () => {
   const { user } = useAuth();
@@ -163,6 +165,13 @@ const Contribute = () => {
                       const f = objectSplitter(e);
                       const g = objectUserDataMixer(f.forDb, userData.phone);
                       console.log(g);
+                      handlePatientUpload([
+                        {
+                          data: "aseed",
+                          identifier: "12d",
+                          phone: "24242",
+                        },
+                      ]);
                     }
                   }}
                 >

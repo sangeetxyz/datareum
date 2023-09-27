@@ -1,5 +1,6 @@
 import { ForBcTypes, ForDbTypes, InputObject } from "@/types/types";
 import CryptoJS from "crypto-js";
+import { Phone } from "lucide-react";
 
 export const generateRandomString = (length: number) => {
   const charset =
@@ -115,4 +116,11 @@ export const objectSplitter = (data: InputObject[]) => {
     forDb: DbObjectArray,
     forBc: BcObjectArray,
   };
+};
+
+export const objectUserDataMixer = (data: ForDbTypes[], phone: string) => {
+  const updatedList = data.map((obj) => {
+    return { ...obj, phone };
+  });
+  return updatedList;
 };

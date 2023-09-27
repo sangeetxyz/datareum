@@ -21,6 +21,7 @@ import {
   objectEncryptor,
   objectIdentificator,
   objectSplitter,
+  objectUserDataMixer,
 } from "@/utils/crypt";
 
 const Contribute = () => {
@@ -159,9 +160,9 @@ const Contribute = () => {
                     if (parsedData) {
                       const d = objectEncryptor(parsedData);
                       const e = objectIdentificator(d);
-                      // console.log(e);
                       const f = objectSplitter(e);
-                      console.log(f);
+                      const g = objectUserDataMixer(f.forDb, userData.phone);
+                      console.log(g);
                     }
                   }}
                 >

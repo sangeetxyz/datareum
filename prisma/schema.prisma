@@ -25,7 +25,17 @@ model user {
   canContribute   Boolean
   canDownload     Boolean
   isGod           Boolean
-  token           String?   @unique 
+  token           String?   @unique
   createdAt       DateTime  @default(now())
   updatedAt       DateTime? @updatedAt
 }
+
+model patient {
+  id         Int       @id @default(autoincrement())
+  identifier String    @unique
+  data       String
+  phone      String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime? @updatedAt
+}
+ 

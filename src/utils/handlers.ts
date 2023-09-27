@@ -487,8 +487,17 @@ export const handleUserUpdateOnAdmin = async (
     });
 };
 
-export const handlePatientUpload = async (data: PatientDB[]) => {
+export const handlePatientUploadToDb = async (data: PatientDB[]) => {
   await axios.post("http://127.0.0.1:3000/api/dev/patients", {
     data,
   });
+};
+
+export const getPatientsData = async () => {
+  const { data } = await axios.get("http://127.0.0.1:3000/api/dev/patients");
+  return data;
+};
+
+export const handlePatientUploadToBc = async (data: PatientDB[]) => {
+
 };

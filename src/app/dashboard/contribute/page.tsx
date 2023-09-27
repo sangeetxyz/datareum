@@ -24,7 +24,7 @@ import {
   objectUserDataMixer,
 } from "@/utils/crypt";
 import axios from "axios";
-import { handlePatientUpload } from "@/utils/handlers";
+import { getPatientsData, handlePatientUploadToDb } from "@/utils/handlers";
 
 const Contribute = () => {
   const { user } = useAuth();
@@ -165,7 +165,8 @@ const Contribute = () => {
                       const f = objectSplitter(e);
                       const g = objectUserDataMixer(f.forDb, userData.phone);
                       console.log(g);
-                      handlePatientUpload(g);
+                      // handlePatientUpload(g);
+                      console.log(getPatientsData());
                     }
                   }}
                 >

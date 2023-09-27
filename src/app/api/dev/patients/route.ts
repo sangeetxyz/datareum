@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 const prisma = new PrismaClient();
 
 export async function GET(request: Request, response: Response) {
-  const userData = await prisma.user.findMany();
+  const userData = await prisma.patient.findMany();
   console.log(userData);
   return NextResponse.json(convertBigIntsToInts(userData));
 }

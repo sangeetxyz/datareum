@@ -39,3 +39,19 @@ export interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
+
+export interface InputObject {
+  identifier: string;
+  data: string;
+  secretKey: string;
+}
+
+export interface ForDbTypes {
+  identifier: string;
+  data: string;
+}
+
+export interface ForBcTypes {
+  identifier: string;
+  secretKey: string;
+}

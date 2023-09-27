@@ -17,6 +17,11 @@ import { QuickStatsSection } from "@/components/contribute/quickStatsSection";
 import { AnalyticsSection } from "@/components/contribute/analyticsSection";
 import { RetentionSection } from "@/components/contribute/retentionSection";
 import { FeedbackSection } from "@/components/contribute/feedbackSection";
+import {
+  objectEncryptor,
+  objectIdentificator,
+  objectSplitter,
+} from "@/utils/crypt";
 
 const Contribute = () => {
   const { user } = useAuth();
@@ -148,6 +153,19 @@ const Contribute = () => {
                   rawStats={rawStats}
                   parsedStats={parsedStats}
                 />
+                <div
+                  className="my-4 w-full cursor-pointer text-center"
+                  onClick={() => {
+                    if (parsedData) {
+                      const d = objectEncryptor(parsedData);
+                      const e = objectIdentificator(d);
+                      const f = objectSplitter(e);
+                      console.log(f);
+                    }
+                  }}
+                >
+                  yupload
+                </div>
               </div>
             </div>
           </div>

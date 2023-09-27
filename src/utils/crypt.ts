@@ -1,18 +1,22 @@
+import { ForBcTypes, ForDbTypes, InputObject } from "@/types/types";
 import CryptoJS from "crypto-js";
 
-export const encrypt = (data: object): { data: string; secretKey: string } | null => {
-  const generateSecretKey = (length: number) => {
-    const charset =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let result = "";
-    const charsetLength = charset.length;
-    for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * charsetLength);
-      result += charset.charAt(randomIndex);
-    }
-    return result;
-  };
-  const secretKey = generateSecretKey(16);
+export const generateRandomString = (length: number) => {
+  const charset =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  const charsetLength = charset.length;
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * charsetLength);
+    result += charset.charAt(randomIndex);
+  }
+  return result;
+};
+
+export const encrypt = (
+  data: object,
+): { data: string; secretKey: string } | null => {
+  const secretKey = generateRandomString(16);
   const blockSize = 16;
   const jsonString = JSON.stringify(data);
   const iv = CryptoJS.lib.WordArray.random(16);
@@ -30,6 +34,7 @@ export const encrypt = (data: object): { data: string; secretKey: string } | nul
     return null;
   }
 };
+
 export const decrypt = (data: string, secretKey: string): object | null => {
   const blockSize = 16;
   const iv = CryptoJS.lib.WordArray.random(blockSize);
@@ -51,5 +56,64 @@ export const decrypt = (data: string, secretKey: string): object | null => {
   } catch (error) {
     console.log("error");
     return null;
+  }
+};
+
+export const objectEncryptor = (
+  data: object[],
+): { secretKey: string; data: string }[] => {
+  const encryptedObjectList: { secretKey: string; data: string }[] = [];
+
+  for (const obj of data) {
+    const result = encrypt(obj);
+    if (result) {
+      encryptedObjectList.push({
+        secretKey: result.secretKey,
+        data: result.data,
+      });
+    }
+  }
+
+  return encryptedObjectList;
+};
+
+export const objectIdentificator = (
+  data: { data: string; secretKey: string }[],
+): { identifier: string; data: string; secretKey: string }[] => {
+  const updatedList = data.map((obj) => {
+    const identifier = generateRandomString(16); // Generate a random string of 16 characters
+    return { ...obj, identifier };
+  });
+
+  return updatedList;
+};
+
+export const objectSplitter = (data: InputObject[]) => {
+  const DbObjectArray: ForDbTypes[] = [];
+  const BcObjectArray: ForBcTypes[] = [];
+  for (const item of data) {
+    const firstObj: {
+      identifier: string;
+      data: string;
+    } = {
+      identifier: item.identifier,
+      data: item.data,
+    };
+
+    const secondObj: {
+      identifier: string;
+      secretKey: string;
+    } = {
+      identifier: item.identifier,
+      secretKey: item.secretKey,
+    };
+
+    DbObjectArray.push(firstObj);
+    BcObjectArray.push(secondObj);
+
+    return {
+      forDb: DbObjectArray,
+      forBc: BcObjectArray,
+    };
   }
 };

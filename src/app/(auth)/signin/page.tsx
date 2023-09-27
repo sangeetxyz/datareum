@@ -11,10 +11,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/context";
 import { userData } from "@/types/types";
-import abstract from "../../../public/abstract.png";
+import abstract from "../../../../public/abstract.png";
 
 import { getAllUsersData } from "@/utils/helpers";
-import waves from "../../../public/waves.png";
+import waves from "../../../../public/waves.png";
 import {
   handleGetOtpClickedForSignin,
   handleProceedClickedForSignin,

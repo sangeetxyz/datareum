@@ -20,8 +20,8 @@ import { useAuth } from "@/context/context";
 import { userData } from "@/types/types";
 import { getAllUsersData, switchSizeReturner } from "@/utils/helpers";
 import { MdEmail } from "react-icons/md";
-import waves from "../../../public/waves.png";
-import abstract from "../../../public/abstract.png";
+import waves from "../../../../public/waves.png";
+import abstract from "../../../../public/abstract.png";
 import {
   handleGetOtpClickedForSignup,
   handleProceedClickedForSignup,

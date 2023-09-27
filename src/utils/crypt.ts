@@ -110,10 +110,9 @@ export const objectSplitter = (data: InputObject[]) => {
 
     DbObjectArray.push(firstObj);
     BcObjectArray.push(secondObj);
-
-    return {
-      forDb: DbObjectArray,
-      forBc: BcObjectArray,
-    };
   }
+  return {
+    forDb: DbObjectArray,
+    forBc: BcObjectArray,
+  };
 };

@@ -159,6 +159,7 @@ const Contribute = () => {
                     if (parsedData) {
                       const d = objectEncryptor(parsedData);
                       const e = objectIdentificator(d);
+                      // console.log(e);
                       const f = objectSplitter(e);
                       console.log(f);
                     }

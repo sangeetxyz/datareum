@@ -37,7 +37,6 @@ import {
   objectUserDataMixer,
 } from "@/utils/crypt";
 import {
-
   handlePatientUploadToBc,
   handlePatientUploadToDb,
 } from "@/utils/handlers";
@@ -84,19 +83,30 @@ export const AcceptButton = ({
                   const p2 = objectIdentificator(p1);
                   const p3 = objectSplitter(p2);
                   const p4 = objectUserDataMixer(p3.forDb, userData.phone);
-                  await handlePatientUploadToDb(p4);
-                  await handlePatientUploadToBc(p3.forBc);
-                  toast.success("Data uploded!", {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: true,
-                    progress: undefined,
-                    pauseOnFocusLoss: false,
-                    theme: "dark",
-                  });
+                  const awaiter = async () => {
+                    await handlePatientUploadToDb(p4);
+                    await handlePatientUploadToBc(p3.forBc);
+                  };
+                  toast.promise(
+                    awaiter,
+                    {
+                      pending: "Uploading Data",
+                      success: "Data Uploaded!",
+                      error: "Rejected 🤯",
+                    },
+                    {
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: false,
+                      draggable: true,
+                      progress: undefined,
+                      pauseOnFocusLoss: false,
+                      theme: "dark",
+                    },
+                  );
+                 
                 }
               }}
               className="cursor-pointer rounded-lg bg-gradient-to-tr from-violet-500 to-teal-500 px-3 py-2 text-center text-sm uppercase text-zinc-50 hover:opacity-90 xl:mt-0"

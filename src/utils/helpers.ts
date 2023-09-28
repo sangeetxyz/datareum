@@ -30,7 +30,7 @@ export const uploadUserFull = async (
   isContributing: boolean,
   isTacAccepted: boolean,
 ) => {
-  await axios.post("http://127.0.0.1:3000/api/dev/users", {
+  await axios.post(`${process.env.NEXT_PUBLIC_WEB_URL}api/dev/users`, {
     name: name,
     org: org,
     email: email,
@@ -129,7 +129,7 @@ export const tokenGenerator = async (userData: userData) => {
     isTac: userData.isTac,
   };
   await axios
-    .put("http://127.0.0.1:3000/api/dev/users", newUserData)
+    .put(`${process.env.NEXT_PUBLIC_WEB_URL}api/dev/users`, newUserData)
     .then(() => {
       console.log("updated");
       window.location.reload();
@@ -137,12 +137,16 @@ export const tokenGenerator = async (userData: userData) => {
 };
 
 export const getAllUsersData = async () => {
-  const { data } = await axios.get("http://127.0.0.1:3000/api/dev/users");
+  const { data } = await axios.get(
+    `${process.env.NEXT_PUBLIC_WEB_URL}api/dev/users`,
+  );
   return data;
 };
 
 export const getDashUserData = async (user: User) => {
-  const { data } = await axios.get("http://127.0.0.1:3000/api/dev/users");
+  const { data } = await axios.get(
+    `${process.env.NEXT_PUBLIC_WEB_URL}api/dev/users`,
+  );
   const thisUser: userData | undefined = findObjectByFireUid(data, user?.uid);
   return thisUser;
 };

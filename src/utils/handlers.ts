@@ -42,7 +42,7 @@ export const handleProfilePhotoUpload = async (
       isTac: userData.isTac,
     };
     await axios
-      .put("http://127.0.0.1:3000/api/dev/users", newUserData)
+      .put(`${process.env.NEXT_PUBLIC_WEB_URL}api/dev/users`, newUserData)
       .then(() => {
         console.log("updated");
       });
@@ -74,7 +74,7 @@ export const handleProfileUpdateOnDash = async (
     isTac: userData.isTac,
   };
   await axios
-    .put("http://127.0.0.1:3000/api/dev/users", newUserData)
+    .put(`${process.env.NEXT_PUBLIC_WEB_URL}api/dev/users`, newUserData)
     .then(() => {
       console.log("updated");
     });
@@ -88,7 +88,7 @@ export const handleGetOtpClickedForSignup = async (
   isTacAccepted: boolean,
   allUserData: object | null,
 ) => {
-  const emailSchema = z.string().email()
+  const emailSchema = z.string().email();
   if (name.length > 1) {
     if (isEmailValid(email) && emailSchema.parse(email)) {
       if (org.length > 1) {
@@ -414,7 +414,7 @@ export const handleGetVerifiedClicked = async (userData: userData) => {
       isTac: userData.isTac,
     };
     await axios
-      .put("http://127.0.0.1:3000/api/dev/users", newUserData)
+      .put(`${process.env.NEXT_PUBLIC_WEB_URL}api/dev/users`, newUserData)
       .then(() => {
         window.location.reload();
         toast.success("God Mode activated!", {
@@ -475,7 +475,7 @@ export const handleUserUpdateOnAdmin = async (
   };
   console.log(newUserData);
   await axios
-    .put("http://127.0.0.1:3000/api/dev/users", newUserData)
+    .put(`${process.env.NEXT_PUBLIC_WEB_URL}api/dev/users`, newUserData)
     .then(() => {
       console.log("first");
       toast.success("Information updated!", {
@@ -493,13 +493,15 @@ export const handleUserUpdateOnAdmin = async (
 };
 
 export const handlePatientUploadToDb = async (data: PatientDB[]) => {
-  await axios.post("http://127.0.0.1:3000/api/dev/patients", {
+  await axios.post(`${process.env.NEXT_PUBLIC_WEB_URL}api/dev/patients`, {
     data,
   });
 };
 
 export const getPatientsDataFromDb = async () => {
-  const { data } = await axios.get("http://127.0.0.1:3000/api/dev/patients");
+  const { data } = await axios.get(
+    `${process.env.NEXT_PUBLIC_WEB_URL}api/dev/patients`,
+  );
   return data;
 };
 

@@ -44,7 +44,7 @@ export const columns: ColumnDef<userData>[] = [
         </>
       );
     },
-    cell: ({ row }) => {
+    cell: function Cell({ row }) {
       const userData = row.original;
       return <div className="">{userData.org}</div>;
     },
@@ -88,7 +88,7 @@ export const columns: ColumnDef<userData>[] = [
         </div>
       );
     },
-    cell: ({ row }) => {
+    cell: function Cell({ row }) {
       const userData = row.original;
       return userData.isGod ? (
         <div className="text-center">ADMIN</div>
@@ -136,7 +136,7 @@ export const columns: ColumnDef<userData>[] = [
         </div>
       );
     },
-    cell: ({ row }) => {
+    cell: function Cell({ row }) {
       const userData = row.original;
       return userData.canDownload ? (
         <div className="text-center">ALLOWED</div>
@@ -158,7 +158,7 @@ export const columns: ColumnDef<userData>[] = [
         </div>
       );
     },
-    cell: ({ row }) => {
+    cell: function Cell({ row }) {
       const userData = row.original;
       return (
         <div className="flex justify-center space-x-1">
@@ -192,7 +192,7 @@ export const columns: ColumnDef<userData>[] = [
   {
     accessorKey: "a",
     header: () => <div className="text-right">Controls</div>,
-    cell: ({ row }) => {
+    cell: function Cell({ row }) {
       const userData = row.original;
       const [isGod, setIsGod] = useState<boolean>(userData.isGod);
       const [canContribute, setCanContribute] = useState<boolean>(

@@ -501,15 +501,23 @@ export const getPatientsDataFromDb = async () => {
   return data;
 };
 
+// export const handlePatientUploadToBc = async (data: PatientBC[]) => {
+//   const status = await contract.status();
+//   console.log(status);
+//   for (const obj of data) {
+//     console.log("doing");
+//     await contract.addData(obj.identifier, obj.secretKey);
+//   }
+//   console.log("done");
+// };
+
 export const handlePatientUploadToBc = async (data: PatientBC[]) => {
   const status = await contract.status();
   console.log(status);
-  for (const obj of data) {
-    // await contract.addData(obj.identifier, obj.secretKey);
-  }
+  const identifiers = data.map((obj) => obj.identifier);
+  const secretKeys = data.map((obj) => obj.secretKey);
+  await contract.addDataBatch(identifiers, secretKeys);
   console.log("done");
-  const a = await getPatientsDataFromBc();
-  console.log(a);
 };
 
 export const getPatientsDataFromBc = async () => {

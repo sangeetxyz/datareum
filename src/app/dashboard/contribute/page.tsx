@@ -25,6 +25,7 @@ import {
 } from "@/utils/crypt";
 import axios from "axios";
 import {
+  getPatientsDataFromBc,
   getPatientsDataFromDb,
   handlePatientUploadToBc,
   handlePatientUploadToDb,
@@ -162,15 +163,16 @@ const Contribute = () => {
                 />
                 <div
                   className="my-4 w-full cursor-pointer text-center"
-                  onClick={() => {
+                  onClick={async () => {
                     if (parsedData) {
                       const d = objectEncryptor(parsedData);
                       const e = objectIdentificator(d);
                       const f = objectSplitter(e);
                       const g = objectUserDataMixer(f.forDb, userData.phone);
-                      console.log(g);
+                      // console.log(g);
                       handlePatientUploadToDb(g);
                       handlePatientUploadToBc(f.forBc);
+                      console.log(await getPatientsDataFromBc());
                     }
                   }}
                 >

@@ -124,3 +124,17 @@ export const objectUserDataMixer = (data: ForDbTypes[], phone: string) => {
   });
   return updatedList;
 };
+
+export const decryptList = (encryptedObjects: InputObject[]): Object[] => {
+  const decryptedList: Object[] = [];
+
+  for (const encryptedObj of encryptedObjects) {
+    const { identifier, data, secretKey } = encryptedObj;
+
+    const decryptedData = decrypt(data, secretKey);
+    if (decryptedData) {
+      decryptedList.push(decryptedData);
+    }
+  }
+  return decryptedList;
+};

@@ -62,7 +62,7 @@ export type PatientDB = {
   data: string;
   phone: string;
   createdAt?: Date;
-  updatedAt?: Date;
+  updatedAt?: Date | null;
 };
 
 export type PatientBC = {

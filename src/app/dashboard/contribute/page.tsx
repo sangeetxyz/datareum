@@ -196,7 +196,7 @@ const Contribute = () => {
                   <div>Select your file to get started</div>
                 </div>
                 <div className="absolute bottom-0 right-0 mx-2 my-1 text-sm">
-                  .csv & .xlsx only
+                  .csv only
                 </div>
               </div>
             </div>
@@ -206,7 +206,7 @@ const Contribute = () => {
               type="file"
               name="file"
               className="hidden"
-              accept=".csv, .xlsx"
+              accept=".csv"
             />
           </div>
         )}
@@ -216,5 +216,3 @@ const Contribute = () => {
 };
 
 export default Contribute;
-
-

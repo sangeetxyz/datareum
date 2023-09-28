@@ -79,13 +79,14 @@ export const AcceptButton = ({
             <AlertDialogAction
               onClick={async () => {
                 if (parsedData) {
-                  const p1 = objectEncryptor(parsedData);
-                  const p2 = objectIdentificator(p1);
-                  const p3 = objectSplitter(p2);
-                  const p4 = objectUserDataMixer(p3.forDb, userData.phone);
                   const awaiter = async () => {
-                    await handlePatientUploadToDb(p4);
-                    await handlePatientUploadToBc(p3.forBc);
+                    const p1 = objectEncryptor(parsedData);
+                    const p2 = objectIdentificator(p1);
+                    const p3 = objectSplitter(p2);
+                    const p4 = objectUserDataMixer(p3.forDb, userData.phone);
+
+                    // await handlePatientUploadToDb(p4);
+                    // await handlePatientUploadToBc(p3.forBc);
                   };
                   toast.promise(
                     awaiter,
@@ -106,7 +107,6 @@ export const AcceptButton = ({
                       theme: "dark",
                     },
                   );
-                 
                 }
               }}
               className="cursor-pointer rounded-lg bg-gradient-to-tr from-violet-500 to-teal-500 px-3 py-2 text-center text-sm uppercase text-zinc-50 hover:opacity-90 xl:mt-0"

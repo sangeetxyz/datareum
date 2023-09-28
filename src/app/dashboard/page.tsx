@@ -17,6 +17,7 @@ import God from "@/components/dash/godSection";
 import Container from "@/components/containers/container";
 import ThemeButton from "@/components/custom/themeButton";
 import { BsArrowUpRight, BsFillExclamationDiamondFill } from "react-icons/bs";
+import { toast } from "react-toastify";
 const Dashboard = () => {
   const { user } = useAuth();
   const router = useRouter();
@@ -69,7 +70,7 @@ const Dashboard = () => {
             <ProfileSection userData={userData} />
             <God userData={userData} />
             <ApiSection userData={userData} />
-            <div className="">
+            <div>
               <div className="my-4 text-xl uppercase">contribution</div>
               <div className="rounded-xl bg-zinc-950 bg-opacity-30 outline outline-2 outline-gray-700 backdrop-blur-sm">
                 <div className="flex items-center justify-between p-6">
@@ -85,7 +86,21 @@ const Dashboard = () => {
                     }}
                     className="flex cursor-pointer items-center space-x-2 rounded-lg bg-gradient-to-tr from-violet-500 to-teal-500 px-3 py-2 text-center text-sm uppercase xl:mt-0"
                     onClick={() => {
-                      router.push("/dashboard/contribute");
+                      if (userData.canContribute) {
+                        router.push("/dashboard/contribute");
+                      } else {
+                        toast.error("You dont have permission!", {
+                          position: "top-right",
+                          autoClose: 5000,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: false,
+                          draggable: true,
+                          progress: undefined,
+                          pauseOnFocusLoss: false,
+                          theme: "dark",
+                        });
+                      }
                     }}
                   >
                     <div>contribute</div>
@@ -98,9 +113,9 @@ const Dashboard = () => {
                       <BsFillExclamationDiamondFill color={"red"} size={20} />
                     </div>
                     <div className=" select-none text-justify">
-                      <span className="font-bold">Caution - </span>You should
-                      never share your API token with anyone. This token is
-                      unresetable. Please read our API{" "}
+                      <span className="font-bold">Caution - </span>We only
+                      accept .CSV files and we only proceess a certain type of
+                      schema of data and data types. Please learn more on the{" "}
                       <span
                         className="cursor-pointer underline"
                         onClick={() => {
@@ -109,7 +124,7 @@ const Dashboard = () => {
                       >
                         documentation
                       </span>{" "}
-                      to know more.
+                      .
                     </div>
                   </div>
                 </div>

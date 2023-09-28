@@ -123,11 +123,11 @@ const Contribute = () => {
         signout
       </div>
     </div>
-  ) : !userData.isGod ? (
+  ) : !userData.canContribute ? (
     <div className="flex h-screen items-center justify-center bg-zinc-950">
       <div className="flex flex-col items-center justify-center text-zinc-50">
         <div className="text-2xl">
-          Are you a <span className="font-bold">GOD</span>?
+          Are you a <span className="font-bold">Hacker</span>?
         </div>
         <div className="text-xl">{"- nah!"}</div>
         <div className="text-2xl">

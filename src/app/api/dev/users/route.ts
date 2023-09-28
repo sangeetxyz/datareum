@@ -9,7 +9,10 @@ const prisma = new PrismaClient();
 export async function GET(request: Request, response: Response) {
   const userData = await prisma.user.findMany();
   console.log(userData);
-  return NextResponse.json(convertBigIntsToInts(userData));
+  if (userData) {
+    return NextResponse.json(convertBigIntsToInts(userData));
+  }
+  return NextResponse.json({});
 }
 
 export async function POST(request: Request, response: Response) {

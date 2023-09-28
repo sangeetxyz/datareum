@@ -3,7 +3,6 @@
 //dM8GkzFyLM3ak9SY
 
 import { useEffect, useState } from "react";
-import { checker, signer, unSigner } from "../../../firebase/firebase";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiFillPhone } from "react-icons/ai";
 import { FaEthereum } from "react-icons/fa";
@@ -26,7 +25,7 @@ import {
   handleGetOtpClickedForSignup,
   handleProceedClickedForSignup,
 } from "@/utils/handlers";
-import Toaster from "@/components/containers/Toaster";
+
 import Container from "@/components/containers/container";
 
 const Signup = () => {
@@ -166,9 +165,9 @@ const Signup = () => {
                 <motion.div
                   key={"first page"}
                   initial={{
-                    y: 200,
+                    // y: 200,
                     opacity: 0,
-                    scale: 0.9,
+                    // scale: 0.9,
                   }}
                   animate={{
                     y: 0,
@@ -177,11 +176,10 @@ const Signup = () => {
                   }}
                   exit={{
                     opacity: 0,
-                    y: -100,
-                    scale: 0.9,
+                    y: -200,
                   }}
                   transition={{
-                    duration: 0.2,
+                    duration: 0.5,
                   }}
                   className="flex flex-col rounded-xl border-2 border-gray-700 bg-zinc-950 bg-opacity-50 p-6 backdrop-blur-sm"
                 >

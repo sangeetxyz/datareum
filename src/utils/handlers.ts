@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import { ethers } from "ethers";
 import { abi } from "./abi";
 import { contract } from "./contract";
+import { z } from "zod";
 
 export const handleProfilePhotoUpload = async (
   photo: File | undefined,
@@ -87,8 +88,9 @@ export const handleGetOtpClickedForSignup = async (
   isTacAccepted: boolean,
   allUserData: object | null,
 ) => {
+  const emailSchema = z.string().email()
   if (name.length > 1) {
-    if (isEmailValid(email)) {
+    if (isEmailValid(email) && emailSchema.parse(email)) {
       if (org.length > 1) {
         if (isPhoneNumber(phoneNumber)) {
           if (isTacAccepted) {

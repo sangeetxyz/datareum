@@ -24,7 +24,7 @@ export const FeedbackSection = ({
       <div className="flex w-full flex-col space-y-4 rounded-xl bg-zinc-950 bg-opacity-30 p-4 outline outline-1 outline-slate-700 backdrop-blur-md">
         {rawStats?.shortestObjectLength ===
         parsedStats?.shortestObjectLength ? (
-          <div className="flex w-full rounded-lg bg-slate-900 bg-opacity-70 py-4 px-3 outline outline-1 outline-green-800">
+          <div className="flex w-full rounded-lg bg-slate-900 bg-opacity-70 px-3 py-4 outline outline-1 outline-green-800">
             <div className="">
               <TiTick color="#1ED760" size={28} />
             </div>
@@ -58,13 +58,12 @@ export const FeedbackSection = ({
               <BsFillExclamationDiamondFill color={"red"} size={20} />
             </div>
             <div className="mt-0.5">
-              Overlaping Analytics shows there one or more rows which doesnt has
-              a single correct column name!
+              Analytics graphs may overlap eachother due to unequal row sizes!
             </div>
           </div>
         )}
         {rawStats?.objectCount === parsedStats?.objectCount ? (
-          <div className="flex w-full rounded-lg bg-slate-900 bg-opacity-70 py-4 px-3 outline outline-1 outline-green-800">
+          <div className="flex w-full rounded-lg bg-slate-900 bg-opacity-70 px-3 py-4 outline outline-1 outline-green-800">
             <div className="">
               <TiTick color="#1ED760" size={28} />
             </div>

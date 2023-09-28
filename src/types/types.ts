@@ -64,3 +64,8 @@ export type PatientDB = {
   createdAt?: Date;
   updatedAt?: Date;
 };
+
+export type PatientBC = {
+  identifier: string;
+  secretKey: string;
+};

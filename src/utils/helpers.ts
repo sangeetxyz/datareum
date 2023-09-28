@@ -140,6 +140,7 @@ export const getAllUsersData = async () => {
   const { data } = await axios.get("http://127.0.0.1:3000/api/dev/users");
   return data;
 };
+
 export const getDashUserData = async (user: User) => {
   const { data } = await axios.get("http://127.0.0.1:3000/api/dev/users");
   const thisUser: userData | undefined = findObjectByFireUid(data, user?.uid);

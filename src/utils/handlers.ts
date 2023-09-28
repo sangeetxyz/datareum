@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { PatientDB, userData } from "@/types/types";
+import { PatientBC, PatientDB, userData } from "@/types/types";
 import { checker, signer, storage } from "@/firebase/firebase";
 import axios from "axios";
 import {
@@ -10,6 +10,9 @@ import {
   uploadUserFull,
 } from "./helpers";
 import { toast } from "react-toastify";
+import { ethers } from "ethers";
+import { abi } from "./abi";
+import { contract } from "./contract";
 
 export const handleProfilePhotoUpload = async (
   photo: File | undefined,
@@ -493,11 +496,33 @@ export const handlePatientUploadToDb = async (data: PatientDB[]) => {
   });
 };
 
-export const getPatientsData = async () => {
+export const getPatientsDataFromDb = async () => {
   const { data } = await axios.get("http://127.0.0.1:3000/api/dev/patients");
   return data;
 };
 
-export const handlePatientUploadToBc = async (data: PatientDB[]) => {
+export const handlePatientUploadToBc = async (data: PatientBC[]) => {
+  const status = await contract.status();
+  console.log(status);
+  for (const obj of data) {
+    // await contract.addData(obj.identifier, obj.secretKey);
+  }
+  console.log("done");
+  const a = await getPatientsDataFromBc();
+  console.log(a);
+};
 
+export const getPatientsDataFromBc = async () => {
+  const result = await contract.getAllData();
+  const [identifiers, secretKeys] = result;
+
+  const data = [];
+  for (let i = 0; i < identifiers.length; i++) {
+    data.push({
+      identifier: identifiers[i],
+      secretKey: secretKeys[i],
+    });
+  }
+
+  return data;
 };

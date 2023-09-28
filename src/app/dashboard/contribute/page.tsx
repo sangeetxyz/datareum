@@ -30,6 +30,7 @@ import {
   handlePatientUploadToBc,
   handlePatientUploadToDb,
 } from "@/utils/handlers";
+import ThemeButton from "@/components/custom/themeButton";
 
 const Contribute = () => {
   const { user } = useAuth();
@@ -161,7 +162,7 @@ const Contribute = () => {
                   rawStats={rawStats}
                   parsedStats={parsedStats}
                 />
-                <div
+                {/* <div
                   className="my-4 w-full cursor-pointer text-center"
                   onClick={async () => {
                     if (parsedData) {
@@ -169,14 +170,17 @@ const Contribute = () => {
                       const e = objectIdentificator(d);
                       const f = objectSplitter(e);
                       const g = objectUserDataMixer(f.forDb, userData.phone);
-                      // console.log(g);
-                      handlePatientUploadToDb(g);
-                      handlePatientUploadToBc(f.forBc);
+                      // handlePatientUploadToDb(g);
+                      // handlePatientUploadToBc(f.forBc);
                       console.log(await getPatientsDataFromBc());
                     }
                   }}
                 >
                   yupload
+                </div> */}
+                <div className="mt-8 mb-4 flex items-center w-full rounded-xl overflow-x-clip">
+                  {/* <div>asdasd</div> */}
+                  <ThemeButton title="contribute now" className="w-full"/>
                 </div>
               </div>
             </div>

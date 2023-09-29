@@ -29,7 +29,7 @@ const HeroSection = (props: { setVariant: (data: string) => void }) => {
               </div>
               <div className="flex flex-col items-center xl:items-start">
                 <div
-                  className="sxs:text-4xl whitespace-nowrap bg-gradient-to-r from-gray-200 via-gray-300 to-gray-500 bg-clip-text text-3xl font-bold capitalize text-transparent sm:text-5xl lg:text-6xl 2xl:text-7xl"
+                  className="whitespace-nowrap bg-gradient-to-r from-gray-200 via-gray-300 to-gray-500 bg-clip-text text-4xl font-bold capitalize text-transparent sm:text-5xl lg:text-6xl 2xl:text-7xl"
                   onMouseEnter={() => {
                     props.setVariant("hero");
                   }}

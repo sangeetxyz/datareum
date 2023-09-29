@@ -335,7 +335,7 @@ const Signup = () => {
             </AnimatePresence>
           </div>
           {/* for pc */}
-          <div className="relative col-span-2 hidden h-full w-full border-[1px] border-l border-gray-700 xl:block">
+          <div className="relative col-span-2 hidden h-full w-full border-l border-gray-700 xl:block">
             <div className="absolute left-0 top-0 h-full w-full">
               <img
                 src={abstract.src}

@@ -104,31 +104,31 @@ const HeroSection = (props: { setVariant: (data: string) => void }) => {
               </div>
               <div className="ml-4 mt-8 flex flex-col items-center xl:flex-row">
                 <div className="relative -ml-4 flex">
-                  <div className="h-24 w-24 rounded-full bg-teal-400"></div>
-                  <div className="absolute left-8 flex h-24 w-24 items-center justify-center rounded-full border-4 border-teal-400 bg-gradient-to-tr from-violet-500 to-teal-500">
-                    <Magnetic>
-                      <motion.div
-                        initial={{
-                          x: -10,
-                        }}
-                        animate={{
-                          x: 0,
-                        }}
-                        whileHover={{
-                          scale: 1.2,
-                        }}
-                        whileTap={{
-                          scale: 0.8,
-                          x: 20,
-                        }}
-                        transition={{
-                          duration: 0.2,
-                        }}
-                        className="flex h-full w-full items-center justify-center"
-                      >
-                        <AiOutlineArrowRight size={30} />
-                      </motion.div>
-                    </Magnetic>
+                  <div className="h-24 w-24 rounded-full bg-teal-400 from-violet-500 to-teal-500"></div>
+                  <div className="absolute left-6 flex h-24 w-24 items-center justify-center rounded-full border-4 border-teal-400 bg-gradient-to-tr from-violet-500 to-teal-500 xl:left-8">
+                    {/* <Magnetic> */}
+                    <motion.div
+                      initial={{
+                        x: -10,
+                      }}
+                      animate={{
+                        x: 0,
+                      }}
+                      whileHover={{
+                        scale: 1.2,
+                      }}
+                      whileTap={{
+                        scale: 0.8,
+                        x: 20,
+                      }}
+                      transition={{
+                        duration: 0.2,
+                      }}
+                      className="flex h-full w-full items-center justify-center"
+                    >
+                      <AiOutlineArrowRight size={30} />
+                    </motion.div>
+                    {/* </Magnetic> */}
                   </div>
                 </div>
                 <div className="ml-16 hidden max-w-sm text-sm xl:block">
